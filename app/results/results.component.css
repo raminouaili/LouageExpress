@@ -1,0 +1,124 @@
+/* Layout --------------------------------------------------------*/
+.results-screen {
+  min-height: 100vh;
+  background: var(--louage-grey);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5rem; /* space for filter sheet */
+}
+
+/* App-bar -------------------------------------------------------*/
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0 0.25rem;
+  cursor: pointer;
+}
+
+/* List ----------------------------------------------------------*/
+.results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  overflow-y: auto;
+}
+.trip-card {
+  display: flex;
+  gap: 0.75rem;
+  background: #fff;
+  border-radius: 1rem;
+  padding: 0.9rem;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 6%);
+}
+.trip-avatar {
+  width: 60px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+.trip-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.trip-top {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+}
+.trip-time {
+  color: var(--louage-red);
+}
+.trip-price {
+  font-size: 1.05rem;
+}
+.trip-route {
+  font-size: 0.9rem;
+}
+.trip-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--louage-border);
+  overflow: hidden;
+  margin: 0.25rem 0;
+}
+.trip-bar-fill {
+  width: 75%; /* static demo width */
+  height: 100%;
+  background: var(--louage-red);
+}
+.trip-seats {
+  font-size: 0.75rem;
+  color: #555;
+}
+
+/* Bottom sheet --------------------------------------------------*/
+.filter-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  translate: -50% 0;
+  width: 100%;
+  max-width: 430px;
+  background: #fff;
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0 -2px 6px rgb(0 0 0 / 10%);
+  padding: 0.65rem 1rem env(safe-area-inset-bottom);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.chip {
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  background: var(--louage-grey);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+.filter-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Scrollbar (mobile webkit) -------------------------------------*/
+.results-list::-webkit-scrollbar {
+  width: 0;
+}

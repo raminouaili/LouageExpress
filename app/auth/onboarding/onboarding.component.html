@@ -1,0 +1,52 @@
+<!-- meta viewport – do this once in index.html ----------------->
+<!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
+
+<div class="onboarding">
+
+  <header class="brand">
+    <span class="name">Louage&nbsp;Express</span>
+  </header>
+
+  <!-- ✨ interactive Swiper Element -->
+  <swiper-container
+  style="width:100%;max-width:500px;height:clamp(220px,45vh,420px);"
+      pagination="true"
+      mousewheel="true"
+      keyboard="true"
+      grab-cursor="true"
+      autoplay-delay="4500"
+      autoplay-disable-on-interaction="false"
+      style="width:100%;max-width:500px;
+             height:clamp(260px,45vh,420px);">
+    <ng-container *ngFor="let s of slides">
+      <swiper-slide>
+        <article class="slide-card">
+          <h3 [innerHTML]="s.title.replace('\n','<br>')"></h3>
+          <div class="svg-wrapper" [innerHTML]="s.svg"></div>
+        </article>
+      </swiper-slide>
+    </ng-container>
+  </swiper-container>
+
+  <!-- auth actions --------------------------------------------->
+   <section class="auth-card">
+    <h3>Get started</h3>
+
+    <div class="primary-actions">
+      <button routerLink="/signup" class="btn-outline">Sign Up</button>
+      <button routerLink="/login"  class="btn-outline">Log In</button>
+    </div>
+
+    <div class="divider"><span>or</span></div>
+
+    <div class="social">
+      <button aria-label="Continue with Google">
+        <fa-icon [icon]="faGoogle"></fa-icon>
+      </button>
+      <button aria-label="Continue with Apple">
+        <fa-icon [icon]="faApple"></fa-icon>
+      </button>
+    </div>
+  </section>
+
+</div>

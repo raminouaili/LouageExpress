@@ -1,0 +1,38 @@
+<!-- Results screen --------------------------------------------->
+<div class="results-screen">
+  <!-- App-bar ---------------------------------------------------->
+  <header class="results-header">
+    <button class="nav-btn" routerLink="/search" aria-label="Retour">←</button>
+    <h1>Résultats ({{ results.length }})</h1>
+    <button class="nav-btn" aria-label="Trier">☰</button>
+  </header>
+
+  <!-- List ------------------------------------------------------->
+  <section class="results-list">
+    <article class="trip-card" *ngFor="let r of results">
+      <img
+        class="trip-avatar"
+        src="https://placehold.co/60x40/ff0000/ffffff?text=🚐"
+        alt="Louage"
+      />
+      <div class="trip-info">
+        <div class="trip-top">
+          <span class="trip-time">{{ r.time }}</span>
+          <span class="trip-price">{{ r.price }} DT</span>
+        </div>
+        <div class="trip-route">{{ r.route }}</div>
+        <div class="trip-bar">
+          <div class="trip-bar-fill"></div>
+        </div>
+        <div class="trip-seats">{{ r.seats }}</div>
+      </div>
+    </article>
+  </section>
+
+  <!-- Bottom filter sheet --------------------------------------->
+  <footer class="filter-sheet">
+    <div class="chip">Earliest first</div>
+    <div class="chip">≤ 20 DT</div>
+    <button class="filter-btn" aria-label="Filtrer">⛃</button>
+  </footer>
+</div>

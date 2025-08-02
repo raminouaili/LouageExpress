@@ -1,0 +1,52 @@
+/* Onboarding-specific styles */
+
+.slide-card {
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.slide-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+}
+
+/* Customise Swiper bullets */
+swiper-container::part(bullet),
+swiper-container::part(bullet-active) {
+  width: 6px;
+  height: 6px;
+}
+swiper-container::part(bullet)         { background:#d0d0d0; }
+swiper-container::part(bullet-active)  { background:#ff2d2d; }
+
+@media (max-width: 320px) {
+  .slide-card {
+    padding: .7rem .4rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .slide-card h3   { font-size: 0.9rem; }
+}
+
+@media (min-width: 768px) {
+  swiper-container   { max-width: 600px; }
+}
+
+/* Card look */
+.slide-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem .8rem .5rem;
+  background: #f9f9f9;
+  border-radius: 1rem;
+  height: 100%;
+  text-align: center;
+}
+.slide-card h3 {
+  margin: 0 0 .8rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  white-space: pre-line;
+}
+.svg-wrapper { flex: 1; display:flex; align-items:center; justify-content:center; }

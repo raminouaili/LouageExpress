@@ -1,0 +1,109 @@
+/* Layout ---------------------------------------------------------*/
+.search-screen {
+  min-height: 100vh;
+  background: var(--louage-grey);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 0.75rem 5rem; /* bottom pad for FAB */
+}
+
+.search-header {
+  width: 100%;
+  max-width: 430px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.logo {
+  font-size: 1.8rem;
+}
+
+/* Card -----------------------------------------------------------*/
+.search-card {
+  width: 100%;
+  max-width: 430px;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 8%);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative; /* so FAB can anchor */
+}
+
+/* Inputs ---------------------------------------------------------*/
+.input-group input,
+.inline-row input,
+.inline-row select {
+  width: 100%;
+  font: inherit;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--louage-border);
+  border-radius: 0.75rem;
+  background: #fafafa;
+  outline: none;
+}
+.input-group input:focus,
+.inline-row input:focus,
+.inline-row select:focus {
+  border-color: var(--louage-red);
+}
+
+/* Date + passenger side-by-side ----------------------------------*/
+.inline-row {
+  display: flex;
+  gap: 0.75rem;
+}
+.inline-row select {
+  flex: 1 0 40%;
+}
+
+/* Map preview ----------------------------------------------------*/
+.map-preview {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--louage-border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.error {
+  color: var(--louage-red);
+  font-size: 0.9rem;
+}
+
+/* Floating action button ----------------------------------------*/
+.fab {
+  position: absolute;
+  right: -1.25rem;
+  bottom: -1.25rem;
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 50%;
+  background: var(--louage-red);
+  color: #fff;
+  font-size: 1.6rem;
+  border: none;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.fab:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Responsive tweaks ---------------------------------------------*/
+@media (min-width: 600px) {
+  .search-card {
+    max-width: 380px;
+  }
+}
