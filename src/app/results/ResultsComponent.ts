@@ -20,11 +20,9 @@ export class ResultsComponent {
       const to = params.get('to') ?? '';
       const travelDate = params.get('travelDate') ?? '';
       const passengers = Number(params.get('passengers') ?? '1');
-      if (from && to) {
-        this.api
-          .searchTrips({ from, to, travelDate, passengers })
-          .subscribe((res) => (this.results = res));
-      }
+      this.api
+        .searchTrips({ from, to, travelDate, passengers })
+        .subscribe((res) => (this.results = res));
     });
   }
 }
