@@ -1,7 +1,35 @@
-
 :root {
-  --louage-red: #d50000;
-  --louage-grey: #f4f6f8;
-  --louage-border: #e0e0e0;
+  --louage-red: #D32F2F;
+  --louage-white: #FFFFFF;
+  --louage-grey: #F5F5F5;
+  --louage-border: #E0E0E0;
+  --louage-text: #424242;
+  --louage-radius: 12px;
 }
 
+body {
+  font-family: 'Roboto', 'Inter', sans-serif;
+  font-size: 16px;
+  color: var(--louage-text);
+  background-color: var(--louage-grey);
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+small {
+  font-size: 12px;
+}
+
+.btn-danger {
+  background-color: var(--louage-red) !important;
+  border-color: var(--louage-red) !important;
+  border-radius: var(--louage-radius) !important;
+}
+.btn-danger:hover {
+  background-color: #b71c1c !important;
+  border-color: #b71c1c !important;
+}

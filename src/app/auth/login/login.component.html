@@ -5,8 +5,9 @@
 
   <section class="auth-card">
     <h3>Log In</h3>
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="w-100">
       <input
+        class="form-control mb-2"
         type="email"
         name="email"
         [(ngModel)]="email"
@@ -14,13 +15,14 @@
         required
       />
       <input
+        class="form-control mb-3"
         type="password"
         name="password"
         [(ngModel)]="password"
         placeholder="Password"
         required
       />
-      <button type="submit" class="btn-outline">Log In</button>
+      <button type="submit" class="btn btn-danger w-100">Log In</button>
     </form>
   </section>
 </div>

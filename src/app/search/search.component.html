@@ -15,6 +15,7 @@
     <!-- From / To ------------------------------------------------->
     <div class="input-group">
       <input
+        class="form-control"
         #fromInput
         type="text"
         name="from"
@@ -26,6 +27,7 @@
 
     <div class="input-group">
       <input
+        class="form-control"
         #toInput
         type="text"
         name="to"
@@ -38,12 +40,13 @@
     <!-- Date + passengers ------------------------------------------>
     <div class="inline-row">
       <input
+        class="form-control"
         type="date"
         name="travelDate"
         ngModel
         required
       />
-      <select name="passengers" ngModel>
+      <select class="form-select" name="passengers" ngModel>
         <option
           *ngFor="let n of [1,2,3,4,5,6,7,8]"
           [value]="n"
@@ -60,12 +63,12 @@
 
     <!-- Floating Action Button ------------------------------------>
     <button
-      class="fab"
+      class="fab btn btn-danger"
       type="submit"
       [disabled]="searchForm.invalid"
       aria-label="Rechercher"
     >
-      🔍
+      <i class="fa-solid fa-magnifying-glass"></i>
     </button>
   </form>
       <google-map height="500px" width="100%">
