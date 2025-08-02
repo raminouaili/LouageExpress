@@ -1,7 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FakeApiService } from '../services/fake-api.service';
 
 @Component({
   selector: 'app-search',
@@ -12,13 +13,14 @@ import { Router } from '@angular/router';
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SearchComponent {
-  query = '';
+  constructor(private router: Router, private api: FakeApiService) {}
 
-  constructor(private router: Router) {}
-
-  onSubmit(): void {
-    if (this.query.trim()) {
-      this.router.navigate(['/results'], { queryParams: { q: this.query } });
-    }
+  onSubmit(form: NgForm): void {
+    const { from, to, travelDate, passengers } = form.value;
+    this.api.searchTrips({ from, to, travelDate, passengers: Number(passengers) }).subscribe(() => {
+      this.router.navigate(['/results'], {
+        queryParams: { from, to, travelDate, passengers },
+      });
+    });
   }
 }
