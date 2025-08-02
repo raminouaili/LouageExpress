@@ -15,7 +15,13 @@ export class FakeApiService {
   }
 
   searchTrips(
-    _params: { from: string; to: string; travelDate: string; passengers: number }
+    _params: {
+      from: string;
+      to: string;
+      travelDate: string;
+      returnDate?: string;
+      passengers: number;
+    }
   ): Observable<Trip[]> {
     const trips: Trip[] = [
       { time: '08 h 30', price: 18, route: 'Tunis → Sfax', seats: '6/8 seats' },

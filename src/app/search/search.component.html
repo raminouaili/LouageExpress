@@ -56,6 +56,26 @@
       </select>
     </div>
 
+    <!-- Round trip toggle + return date ----------------------------->
+    <div class="inline-row">
+      <label class="form-check-label">
+        <input
+          type="checkbox"
+          name="roundTrip"
+          [(ngModel)]="roundTrip"
+        />
+        Aller-retour
+      </label>
+      <input
+        *ngIf="roundTrip"
+        class="form-control"
+        type="date"
+        name="returnDate"
+        ngModel
+        [required]="roundTrip"
+      />
+    </div>
+
     <div class="error" *ngIf="error">{{ error }}</div>
 
     <!-- Map preview ----------------------------------------------->
