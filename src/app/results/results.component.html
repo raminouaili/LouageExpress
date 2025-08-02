@@ -1,6 +1,38 @@
-<div class="results-page">
-  <h2>Results for "{{ query }}"</h2>
-  <ul>
-    <li *ngFor="let item of dummyResults()">{{ item }}</li>
-  </ul>
+<!-- Results screen --------------------------------------------->
+<div class="results-screen">
+  <!-- App-bar ---------------------------------------------------->
+  <header class="results-header">
+    <button class="nav-btn" routerLink="/search" aria-label="Retour">←</button>
+    <h1>Résultats ({{ dummyResults().length }})</h1>
+    <button class="nav-btn" aria-label="Trier">☰</button>
+  </header>
+
+  <!-- List ------------------------------------------------------->
+  <section class="results-list">
+    <article class="trip-card" *ngFor="let r of dummyResults()">
+      <img
+        class="trip-avatar"
+        src="https://placehold.co/60x40/ff0000/ffffff?text=🚐"
+        alt="Louage"
+      />
+      <div class="trip-info">
+        <div class="trip-top">
+          <span class="trip-time">08 h 30</span>
+          <span class="trip-price">18 DT</span>
+        </div>
+        <div class="trip-route">Tunis → Sfax</div>
+        <div class="trip-bar">
+          <div class="trip-bar-fill"></div>
+        </div>
+        <div class="trip-seats">6/8 seats</div>
+      </div>
+    </article>
+  </section>
+
+  <!-- Bottom filter sheet --------------------------------------->
+  <footer class="filter-sheet">
+    <div class="chip">Earliest first</div>
+    <div class="chip">≤ 20 DT</div>
+    <button class="filter-btn" aria-label="Filtrer">⛃</button>
+  </footer>
 </div>

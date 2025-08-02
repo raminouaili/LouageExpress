@@ -1,13 +1,69 @@
-<div class="search-page">
-  <h2>Search</h2>
-  <form (ngSubmit)="onSubmit()" #searchForm="ngForm">
-    <input
-      type="text"
-      name="query"
-      [(ngModel)]="query"
-      placeholder="Search term"
-      required
-    />
-    <button type="submit" class="btn-outline">Search</button>
+<!-- Search screen ------------------------------------------------>
+<div class="search-screen">
+  <!-- App-bar ----------------------------------------------------->
+  <header class="search-header">
+    <span class="logo">🚐</span>
+    <h1>Rechercher</h1>
+  </header>
+
+  <!-- Search form ------------------------------------------------->
+  <form
+    class="search-card"
+    #searchForm="ngForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <!-- From / To ------------------------------------------------->
+    <div class="input-group">
+      <input
+        type="text"
+        name="from"
+        ngModel
+        placeholder="De"
+        required
+      />
+    </div>
+
+    <div class="input-group">
+      <input
+        type="text"
+        name="to"
+        ngModel
+        placeholder="À"
+        required
+      />
+    </div>
+
+    <!-- Date + passengers ------------------------------------------>
+    <div class="inline-row">
+      <input
+        type="date"
+        name="travelDate"
+        ngModel
+        required
+      />
+      <select name="passengers" ngModel>
+        <option
+          *ngFor="let n of [1,2,3,4,5,6,7,8]"
+          [value]="n"
+        >
+          {{ n }} passager{{ n > 1 ? 's' : '' }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Map preview ----------------------------------------------->
+    <div class="map-preview">
+      <div class="map-route"></div>
+    </div>
+
+    <!-- Floating Action Button ------------------------------------>
+    <button
+      class="fab"
+      type="submit"
+      [disabled]="searchForm.invalid"
+      aria-label="Rechercher"
+    >
+      🔍
+    </button>
   </form>
 </div>
