@@ -1,0 +1,46 @@
+<div class="onboarding">
+  <header class="brand">
+    <span class="name">Louage&nbsp;Express</span>
+  </header>
+
+  <section class="auth-card">
+    <h3>Sign Up</h3>
+
+    <form *ngIf="step === 1" (ngSubmit)="nextStep()" #infoForm="ngForm">
+      <select name="userType" [(ngModel)]="userType" required>
+        <option value="" disabled>Select role</option>
+        <option value="passenger">Passager</option>
+        <option value="driver">Chauffeur</option>
+      </select>
+      <input type="text" name="name" [(ngModel)]="general.name" placeholder="Full Name" required />
+      <input type="email" name="email" [(ngModel)]="general.email" placeholder="Email" required />
+      <input type="password" name="password" [(ngModel)]="general.password" placeholder="Password" required />
+      <button type="submit" class="btn-outline">Next</button>
+    </form>
+
+    <form *ngIf="step === 2" (ngSubmit)="nextStep()" #phoneForm="ngForm">
+      <input type="tel" name="phone" [(ngModel)]="phone" placeholder="Phone Number" required />
+      <input type="text" name="code" [(ngModel)]="verificationCode" placeholder="Verification Code" required />
+      <div class="form-nav">
+        <button type="button" class="btn-outline" (click)="prevStep()">Back</button>
+        <button type="submit" class="btn-outline">Next</button>
+      </div>
+    </form>
+
+    <form *ngIf="step === 3" (ngSubmit)="nextStep()" #idForm="ngForm">
+      <input type="text" name="id" [(ngModel)]="idNumber" placeholder="ID or Passport Number" required />
+      <div class="form-nav">
+        <button type="button" class="btn-outline" (click)="prevStep()">Back</button>
+        <button type="submit" class="btn-outline">{{ userType === 'driver' ? 'Next' : 'Finish' }}</button>
+      </div>
+    </form>
+
+    <form *ngIf="step === 4 && userType === 'driver'" (ngSubmit)="finish()" #licenseForm="ngForm">
+      <input type="text" name="license" [(ngModel)]="licenseNumber" placeholder="Driver License Number" required />
+      <div class="form-nav">
+        <button type="button" class="btn-outline" (click)="prevStep()">Back</button>
+        <button type="submit" class="btn-outline">Finish</button>
+      </div>
+    </form>
+  </section>
+</div>
