@@ -1,0 +1,13 @@
+<div class="search-page">
+  <h2>Search</h2>
+  <form (ngSubmit)="onSubmit()" #searchForm="ngForm">
+    <input
+      type="text"
+      name="query"
+      [(ngModel)]="query"
+      placeholder="Search term"
+      required
+    />
+    <button type="submit" class="btn-outline">Search</button>
+  </form>
+</div>
