@@ -1,0 +1,26 @@
+<div class="onboarding">
+  <header class="brand">
+    <span class="name">Louage&nbsp;Express</span>
+  </header>
+
+  <section class="auth-card">
+    <h3>Log In</h3>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="Email"
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        placeholder="Password"
+        required
+      />
+      <button type="submit" class="btn-outline">Log In</button>
+    </form>
+  </section>
+</div>

@@ -14,7 +14,7 @@ interface Slide {
   standalone: true,
   imports: [CommonModule, RouterModule, FontAwesomeModule],
   templateUrl: './onboarding.component.html',
-  styleUrls: ['./onboarding.component.css'],
+  styleUrls: ['../auth-shared.css', './onboarding.component.css'],
    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class OnboardingComponent {

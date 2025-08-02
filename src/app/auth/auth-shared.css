@@ -1,0 +1,156 @@
+/* Shared styles for authentication components */
+
+.onboarding {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  height: 100dvh;
+  background: #ffffff;
+  font-family: system-ui, sans-serif;
+  color: #1a1a1a;
+}
+
+.onboarding, .onboarding * {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #d30000;
+}
+.brand .pin  { font-size: 0.8rem; margin-right: -.15rem; }
+.brand .car  { font-size: 1.4rem; }
+.brand .name { line-height: 1; }
+
+/* Auth card */
+.auth-card {
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 330px;
+  padding: 1.2rem 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.auth-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+}
+.auth-card h3 { margin: 0 0 1rem; font-weight: 600; }
+
+/* Buttons */
+.primary-actions {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.btn-outline {
+  flex: 1;
+  padding: .6rem 0;
+  border: 2px solid #d30000;
+  border-radius: 9999px;
+  background: transparent;
+  color: #d30000;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-outline:hover { background: #ffe6e6; }
+.btn-outline:active {
+  transform: scale(0.97);
+  background: #ffd6d6;
+}
+
+/* Divider */
+.divider {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  margin: 1.2rem 0 .8rem;
+}
+.divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: #e0e0e0;
+  transform: translateY(-50%);
+}
+.divider span {
+  background: #fff;
+  padding: 0 .5rem;
+  font-size: .75rem;
+  color: #8a8a8a;
+  position: relative;
+}
+
+/* Social buttons */
+.social {
+  display: flex;
+  gap: 1.5rem;
+}
+.social button {
+  border: none;
+  background: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.social button:hover { opacity: .75; }
+.social button:active {
+  transform: scale(0.92);
+  background: #f3f3f3;
+  border-radius: 50%;
+}
+
+/* Responsive rules */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 1rem 0.6rem;
+    max-width: 95vw;
+  }
+  .primary-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .btn-outline {
+    font-size: 1rem;
+    padding: .7rem 0;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .auth-card {
+    max-width: 400px;
+    padding: 1.5rem 2rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .auth-card {
+    padding: .7rem .4rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .auth-card h3   { font-size: 1rem; }
+  .btn-outline    { font-size: 0.85rem; padding: .5rem 0; }
+}
+
+@media (min-width: 768px) {
+  .onboarding { padding: 2rem; }
+  .auth-card  { margin-top: 2rem; }
+}
