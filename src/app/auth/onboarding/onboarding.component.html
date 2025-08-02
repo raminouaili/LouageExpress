@@ -1,16 +1,23 @@
+<!-- meta viewport – do this once in index.html ----------------->
+<!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
+
 <div class="onboarding">
 
-  <!-- brand ------------------------------------------------------->
   <header class="brand">
-   
-    <span class="name">Louage Express</span>
+    <span class="name">Louage&nbsp;Express</span>
   </header>
 
-  <!-- Swiper carousel ------------------------------------------->
+  <!-- ✨ interactive Swiper Element -->
   <swiper-container
-    pagination="true"
-    mousewheel="true"
-    style="width:100%;max-width:330px;height:320px;">
+  style="width:100%;max-width:500px;height:clamp(220px,45vh,420px);"
+      pagination="true"
+      mousewheel="true"
+      keyboard="true"
+      grab-cursor="true"
+      autoplay-delay="4500"
+      autoplay-disable-on-interaction="false"
+      style="width:100%;max-width:500px;
+             height:clamp(260px,45vh,420px);">
     <ng-container *ngFor="let s of slides">
       <swiper-slide>
         <article class="slide-card">
@@ -20,8 +27,9 @@
       </swiper-slide>
     </ng-container>
   </swiper-container>
-  <!-- auth actions (unchanged) ----------------------------------->
-  <section class="auth-card">
+
+  <!-- auth actions --------------------------------------------->
+   <section class="auth-card">
     <h3>Get started</h3>
 
     <div class="primary-actions">
@@ -40,4 +48,5 @@
       </button>
     </div>
   </section>
+
 </div>

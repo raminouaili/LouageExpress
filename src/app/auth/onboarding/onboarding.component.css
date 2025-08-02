@@ -1,3 +1,100 @@
+.auth-card {
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.auth-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+}
+
+/* Responsive pour petits écrans */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 1rem 0.6rem;
+    max-width: 95vw;
+  }
+  .primary-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .btn-outline {
+    font-size: 1rem;
+    padding: .7rem 0;
+  }
+}
+
+/* Responsive pour tablettes */
+@media (min-width: 600px) and (max-width: 900px) {
+  .auth-card {
+    max-width: 400px;
+    padding: 1.5rem 2rem;
+  }
+}
+
+.btn-outline {
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-outline:active {
+  transform: scale(0.97);
+  background: #ffd6d6;
+}
+
+.slide-card {
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.slide-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+}
+/* make bullets bigger on high-DPI screens ----------------------*/
+swiper-container::part(bullet),
+swiper-container::part(bullet-active) {
+  width: 6px;
+  height: 6px;
+}
+
+.social button:active {
+  transform: scale(0.92);
+  background: #f3f3f3;
+  border-radius: 50%;
+}
+@media (max-width: 320px) {
+  .slide-card, .auth-card {
+    padding: .7rem .4rem;
+    font-size: 0.95rem;
+  }
+  .brand {
+    font-size: 1rem;
+  }
+}
+
+@media (min-resolution: 192dpi) {
+  swiper-container::part(bullet),
+  swiper-container::part(bullet-active) { width: 7px; height: 7px; }
+}
+swiper-container::part(bullet)         { background:#d0d0d0; }
+swiper-container::part(bullet-active)  { background:#ff2d2d; }
+
+/* tactile feedback: stop double-tap highlight ------------------*/
+.onboarding, .onboarding * {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* small phones (≤360 px) --------------------------------------*/
+@media (max-width: 360px) {
+  .slide-card h3   { font-size: 0.9rem; }
+  .auth-card h3    { font-size: 1rem; }
+  .btn-outline     { font-size: 0.85rem; padding: .5rem 0; }
+}
+
+/* tablets (≥768 px) -------------------------------------------*/
+@media (min-width: 768px) {
+  .onboarding        { padding: 2rem; }
+  .auth-card,
+  swiper-container   { max-width: 600px; }
+  .auth-card         { margin-top: 2rem; }
+}
+
+
 /* Layout --------------------------------------------------------- */
 .onboarding {
   display: flex;
