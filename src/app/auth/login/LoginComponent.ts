@@ -2,6 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { FakeApiService } from '../../services/fake-api.service';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +16,11 @@ export class LoginComponent {
   email = '';
   password = '';
 
+  constructor(private api: FakeApiService) {}
+
   onSubmit(): void {
-    // Placeholder for authentication logic
-    console.log('Logging in with', this.email);
+    this.api.login(this.email, this.password).subscribe((res) => {
+      console.log('Fake login success', res);
+    });
   }
 }

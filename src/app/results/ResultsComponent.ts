@@ -1,6 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { FakeApiService, Trip } from '../services/fake-api.service';
 
 @Component({
   selector: 'app-results',
@@ -11,18 +12,19 @@ import { ActivatedRoute } from '@angular/router';
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ResultsComponent {
-  query = '';
+  results: Trip[] = [];
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private api: FakeApiService) {
     this.route.queryParamMap.subscribe((params) => {
-      this.query = params.get('q') ?? '';
+      const from = params.get('from') ?? '';
+      const to = params.get('to') ?? '';
+      const travelDate = params.get('travelDate') ?? '';
+      const passengers = Number(params.get('passengers') ?? '1');
+      if (from && to) {
+        this.api
+          .searchTrips({ from, to, travelDate, passengers })
+          .subscribe((res) => (this.results = res));
+      }
     });
-  }
-
-  dummyResults(): string[] {
-    if (!this.query) {
-      return [];
-    }
-    return ['Result 1', 'Result 2', 'Result 3'].map((r) => `${r} for "${this.query}"`);
   }
 }
