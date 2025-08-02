@@ -1,0 +1,43 @@
+<div class="onboarding">
+
+  <!-- brand ------------------------------------------------------->
+  <header class="brand">
+   
+    <span class="name">Louage Express</span>
+  </header>
+
+  <!-- Swiper carousel ------------------------------------------->
+  <swiper-container
+    pagination="true"
+    mousewheel="true"
+    style="width:100%;max-width:330px;height:320px;">
+    <ng-container *ngFor="let s of slides">
+      <swiper-slide>
+        <article class="slide-card">
+          <h3 [innerHTML]="s.title.replace('\n','<br>')"></h3>
+          <div class="svg-wrapper" [innerHTML]="s.svg"></div>
+        </article>
+      </swiper-slide>
+    </ng-container>
+  </swiper-container>
+  <!-- auth actions (unchanged) ----------------------------------->
+  <section class="auth-card">
+    <h3>Get started</h3>
+
+    <div class="primary-actions">
+      <button routerLink="/signup" class="btn-outline">Sign Up</button>
+      <button routerLink="/login"  class="btn-outline">Log In</button>
+    </div>
+
+    <div class="divider"><span>or</span></div>
+
+    <div class="social">
+      <button aria-label="Continue with Google">
+        <fa-icon [icon]="faGoogle"></fa-icon>
+      </button>
+      <button aria-label="Continue with Apple">
+        <fa-icon [icon]="faApple"></fa-icon>
+      </button>
+    </div>
+  </section>
+</div>
