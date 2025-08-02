@@ -15,6 +15,7 @@
     <!-- From / To ------------------------------------------------->
     <div class="input-group">
       <input
+        #fromInput
         type="text"
         name="from"
         ngModel
@@ -25,6 +26,7 @@
 
     <div class="input-group">
       <input
+        #toInput
         type="text"
         name="to"
         ngModel
@@ -51,10 +53,10 @@
       </select>
     </div>
 
+    <div class="error" *ngIf="error">{{ error }}</div>
+
     <!-- Map preview ----------------------------------------------->
-    <div class="map-preview">
-      <div class="map-route"></div>
-    </div>
+    <div id="map" class="map-preview"></div>
 
     <!-- Floating Action Button ------------------------------------>
     <button
@@ -66,4 +68,7 @@
       🔍
     </button>
   </form>
+      <google-map height="500px" width="100%">
+      <!-- Optional: Add markers, info windows, etc. -->
+    </google-map>
 </div>

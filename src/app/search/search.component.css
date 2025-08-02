@@ -68,36 +68,14 @@
 .map-preview {
   width: 100%;
   aspect-ratio: 4 / 3;
-  background: #fff;
   border: 1px solid var(--louage-border);
   border-radius: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
-.map-route {
-  width: 80%;
-  height: 2px;
-  background: var(--louage-red);
-  position: relative;
-}
-.map-route::before,
-.map-route::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--louage-red);
-  transform: translateY(-50%);
-}
-.map-route::before {
-  left: -7px;
-}
-.map-route::after {
-  right: -7px;
+
+.error {
+  color: var(--louage-red);
+  font-size: 0.9rem;
 }
 
 /* Floating action button ----------------------------------------*/
