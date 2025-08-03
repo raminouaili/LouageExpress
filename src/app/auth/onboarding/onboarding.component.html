@@ -32,18 +32,18 @@
    <section class="auth-card">
     <h3>Get started</h3>
 
-    <div class="primary-actions">
-      <button routerLink="/signup" class="btn-outline">Sign Up</button>
-      <button routerLink="/login"  class="btn-outline">Log In</button>
+    <div class="d-flex gap-3 w-100">
+      <button routerLink="/signup" class="btn btn-danger flex-fill">Sign Up</button>
+      <button routerLink="/login"  class="btn btn-danger flex-fill">Log In</button>
     </div>
 
     <div class="divider"><span>or</span></div>
 
-    <div class="social">
-      <button aria-label="Continue with Google">
+    <div class="d-flex gap-3">
+      <button class="btn btn-outline-secondary rounded-circle" aria-label="Continue with Google">
         <fa-icon [icon]="faGoogle"></fa-icon>
       </button>
-      <button aria-label="Continue with Apple">
+      <button class="btn btn-outline-secondary rounded-circle" aria-label="Continue with Apple">
         <fa-icon [icon]="faApple"></fa-icon>
       </button>
     </div>

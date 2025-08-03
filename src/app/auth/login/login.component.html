@@ -1,13 +1,24 @@
 <div class="onboarding">
   <header class="brand">
+    <button
+      class="btn btn-link link-danger p-0 me-2"
+      routerLink="/auth"
+      aria-label="Retour"
+    >
+      ←
+    </button>
     <span class="name">Louage&nbsp;Express</span>
   </header>
 
   <section class="auth-card">
     <h3>Log In</h3>
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="w-100">
+    <form
+      (ngSubmit)="onSubmit()"
+      #loginForm="ngForm"
+      class="d-flex flex-column gap-3 w-100"
+    >
       <input
-        class="form-control mb-2"
+        class="form-control"
         type="email"
         name="email"
         [(ngModel)]="email"
@@ -15,7 +26,7 @@
         required
       />
       <input
-        class="form-control mb-3"
+        class="form-control"
         type="password"
         name="password"
         [(ngModel)]="password"

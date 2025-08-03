@@ -2,9 +2,15 @@
 <div class="results-screen">
   <!-- App-bar ---------------------------------------------------->
   <header class="results-header">
-    <button class="nav-btn" routerLink="/search" aria-label="Retour">←</button>
-    <h1>Résultats ({{ results.length }})</h1>
-    <button class="nav-btn" aria-label="Trier">☰</button>
+    <button
+      class="btn btn-link link-dark p-0"
+      routerLink="/search"
+      aria-label="Retour"
+    >
+      ←
+    </button>
+    <h1 class="m-0">Résultats ({{ results.length }})</h1>
+    <button class="btn btn-link link-dark p-0" aria-label="Trier">☰</button>
   </header>
 
   <div class="return-info" *ngIf="returnDate">

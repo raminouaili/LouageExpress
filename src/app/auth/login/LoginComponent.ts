@@ -9,7 +9,7 @@ import { FakeApiService } from '../../services/fake-api.service';
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrls: ['../auth-shared.css', './login.component.css'],
+  styleUrls: ['../auth-shared.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class LoginComponent {

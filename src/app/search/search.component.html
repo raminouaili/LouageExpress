@@ -1,6 +1,13 @@
 <div class="search-screen">
   <header class="search-header">
-    <h1>Rechercher</h1>
+    <button
+      class="btn btn-link link-dark p-0 me-2"
+      routerLink="/auth"
+      aria-label="Retour"
+    >
+      ←
+    </button>
+    <h1 class="m-0">Rechercher</h1>
   </header>
 
   <form
@@ -8,53 +15,55 @@
     #searchForm="ngForm"
     (ngSubmit)="onSubmit(searchForm)"
   >
-    <div class="input-group">
-      <input
-        class="form-control"
-        #fromInput
-        type="text"
-        name="from"
-        ngModel
-        placeholder="De"
-        required
-      />
-    </div>
-    <div class="input-group">
-      <input
-        class="form-control"
-        #toInput
-        type="text"
-        name="to"
-        ngModel
-        placeholder="À"
-        required
-      />
-    </div>
+    <input
+      class="form-control mb-3"
+      #fromInput
+      type="text"
+      name="from"
+      ngModel
+      placeholder="De"
+      required
+    />
+    <input
+      class="form-control mb-3"
+      #toInput
+      type="text"
+      name="to"
+      ngModel
+      placeholder="À"
+      required
+    />
 
-    <div class="inline-row">
-      <input
-        class="form-control"
-        type="date"
-        name="travelDate"
-        ngModel
-        required
-      />
-      <select class="form-select" name="passengers" ngModel>
-        <option *ngFor="let n of [1,2,3,4,5,6,7,8]" [value]="n">
-          {{ n }} passager{{ n > 1 ? 's' : '' }}
-        </option>
-      </select>
-    </div>
-
-    <div class="inline-row">
-      <label class="form-check-label">
+    <div class="row g-2 mb-3">
+      <div class="col">
         <input
+          class="form-control"
+          type="date"
+          name="travelDate"
+          ngModel
+          required
+        />
+      </div>
+      <div class="col-auto">
+        <select class="form-select" name="passengers" ngModel>
+          <option *ngFor="let n of [1,2,3,4,5,6,7,8]" [value]="n">
+            {{ n }} passager{{ n > 1 ? 's' : '' }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="d-flex gap-2 align-items-center mb-3">
+      <div class="form-check mb-0">
+        <input
+          class="form-check-input"
           type="checkbox"
           name="roundTrip"
           [(ngModel)]="roundTrip"
+          id="roundTrip"
         />
-        Aller-retour
-      </label>
+        <label class="form-check-label" for="roundTrip">Aller-retour</label>
+      </div>
       <input
         *ngIf="roundTrip"
         class="form-control"
@@ -66,8 +75,8 @@
     </div>
 
     <div class="error" *ngIf="error">{{ error }}</div>
-        <button
-      class="fab btn btn-danger"
+    <button
+      class="btn btn-danger"
       type="submit"
       [disabled]="searchForm.invalid"
     >
