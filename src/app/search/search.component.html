@@ -78,10 +78,11 @@
     <button
       class="btn btn-danger"
       type="submit"
-      [disabled]="searchForm.invalid"
+      [disabled]="searchForm.invalid || !fromPlace || !toPlace"
     >
       Rechercher
     </button>
+
   </form>
     <!-- Map preview ----------------------------------------------->
 
