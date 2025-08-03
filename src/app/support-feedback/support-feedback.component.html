@@ -1,0 +1,25 @@
+<div class="container">
+  <input class="search" type="text" placeholder="Rechercher FAQ" />
+
+  <div class="faq">
+    <details open>
+      <summary>Comment réserver un trajet ?</summary>
+      <p>Vous pouvez rechercher et réserver via l'application.</p>
+    </details>
+    <details>
+      <summary>Puis-je annuler une réservation ?</summary>
+      <p>Oui, dans votre historique.</p>
+    </details>
+  </div>
+
+  <div class="card rating-card">
+    <h3>Évaluez votre dernier trajet</h3>
+    <div class="stars">
+      <span *ngFor="let star of [1,2,3,4,5]" (click)="setRating(star)" [class.active]="star <= rating">★</span>
+    </div>
+    <textarea placeholder="Laissez un commentaire…"></textarea>
+    <button class="submit-btn">Envoyer</button>
+  </div>
+
+  <button class="chat-bubble">💬</button>
+</div>
