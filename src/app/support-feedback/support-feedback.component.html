@@ -1,14 +1,16 @@
 <div class="container">
-  <input class="search" type="text" [placeholder]="'support.searchPlaceholder' | translate" />
+
+  <input class="search input-field" type="text" [placeholder]="'support.searchPlaceholder' | translate" />
 
   <div class="faq">
-    <details open>
-      <summary>{{ 'support.faq.q1' | translate }}</summary>
-      <p>{{ 'support.faq.a1' | translate }}</p>
+    <details class="card" open>
+     <summary>{{ 'support.faq.q1' | translate }}</summary>
+       <p>{{ 'support.faq.a1' | translate }}</p>
     </details>
-    <details>
-      <summary>{{ 'support.faq.q2' | translate }}</summary>
-      <p>{{ 'support.faq.a2' | translate }}</p>
+    <details class="card">
+     <summary>{{ 'support.faq.q2' | translate }}</summary>y>
+       <p>{{ 'support.faq.a2' | translate }}</p>
+
     </details>
   </div>
 
