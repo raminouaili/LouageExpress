@@ -46,3 +46,4 @@ Thumbs.db
 /backend/.vs/LouageExpress.Api
 /backend/LouageExpress.Api/bin/Release/net8.0
 *.user
+/backend/LouageExpress.Api/bin/Debug/net8.0

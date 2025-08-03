@@ -24,6 +24,8 @@ export class SearchComponent implements AfterViewInit {
   /* Template refs ------------------------------------------------*/
   @ViewChild('fromInput', { static: true }) fromInput!: ElementRef<HTMLInputElement>;
   @ViewChild('toInput',   { static: true }) toInput!  : ElementRef<HTMLInputElement>;
+  @ViewChild('travelDateInput', { static: true }) travelDateInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('returnDateInput') returnDateInput?: ElementRef<HTMLInputElement>;
 
   /* Autocomplete results ----------------------------------------*/
   public fromPlace: google.maps.places.PlaceResult | null = null;
@@ -140,19 +142,48 @@ ngAfterViewInit(): void {
   onSubmit(form: NgForm): void {
     const { from, to, travelDate, returnDate, passengers, roundTrip } = form.value;
 
-    /* ---- Validation manuelle ---- */
-    if (!this.isPlaceInTunisia(this.fromPlace) || !this.isPlaceInTunisia(this.toPlace)) {
-      this.error = 'Les lieux doivent être situés en Tunisie.';
-      return;
+    Object.values(form.controls).forEach(c => {
+      c.setErrors(null);
+      c.updateValueAndValidity();
+    });
+
+    let firstInvalid: HTMLElement | null = null;
+
+    if (!this.isPlaceInTunisia(this.fromPlace)) {
+      form.controls['from']?.setErrors({ invalidPlace: true });
+      form.controls['from']?.markAsTouched();
+      firstInvalid ??= this.fromInput.nativeElement;
+    }
+
+    if (!this.isPlaceInTunisia(this.toPlace)) {
+      form.controls['to']?.setErrors({ invalidPlace: true });
+      form.controls['to']?.markAsTouched();
+      firstInvalid ??= this.toInput.nativeElement;
     }
 
     const dep = new Date(travelDate);
     const ret = returnDate ? new Date(returnDate) : null;
     const today = new Date(); today.setHours(0,0,0,0);
 
-    if (dep < today)          { this.error = 'La date doit être dans le futur.'; return; }
-    if (roundTrip && !ret)    { this.error = 'Sélectionnez une date de retour.'; return; }
-    if (roundTrip && ret && ret <= dep) { this.error = 'Retour après le départ.'; return; }
+    if (dep < today) {
+      form.controls['travelDate']?.setErrors({ pastDate: true });
+      form.controls['travelDate']?.markAsTouched();
+      firstInvalid ??= this.travelDateInput.nativeElement;
+    }
+    if (roundTrip && !ret) {
+      form.controls['returnDate']?.setErrors({ required: true });
+      form.controls['returnDate']?.markAsTouched();
+      firstInvalid ??= this.returnDateInput?.nativeElement ?? null;
+    } else if (roundTrip && ret && ret <= dep) {
+      form.controls['returnDate']?.setErrors({ beforeDeparture: true });
+      form.controls['returnDate']?.markAsTouched();
+      firstInvalid ??= this.returnDateInput?.nativeElement ?? null;
+    }
+
+    if (form.invalid) {
+      firstInvalid?.focus();
+      return;
+    }
 
     this.error = null;
 
