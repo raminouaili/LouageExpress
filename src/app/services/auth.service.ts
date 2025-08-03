@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, tap } from 'rxjs';
+import { Observable, tap, of } from 'rxjs';
+import { environment } from '../../environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -9,16 +10,12 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   /**
-   * Mocked login implementation. Replace with real HTTP call when backend is ready.
+   * Login by calling the backend API and store the returned token.
    */
   login(email: string, password: string): Observable<{ token: string }> {
-    const token = btoa(`${email}:${password}:${Date.now()}`);
-    return of({ token }).pipe(
-      tap(res => localStorage.setItem(this.tokenKey, res.token))
-    );
-    // Real example:
-    // return this.http.post<{ token: string }>(`${environment.apiUrl}/auth/login`, { email, password })
-    //   .pipe(tap(res => localStorage.setItem(this.tokenKey, res.token)));
+    return this.http
+      .post<{ token: string }>(`${environment.apiUrl}/auth/login`, { email, password })
+      .pipe(tap(res => localStorage.setItem(this.tokenKey, res.token)));
   }
 
   logout(): void {

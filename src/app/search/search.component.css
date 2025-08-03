@@ -47,6 +47,11 @@
   font-size: 0.9rem;
 }
 
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: var(--louage-red);
+}
+
 
 /* Responsive tweaks ---------------------------------------------*/
 @media (min-width: 600px) {

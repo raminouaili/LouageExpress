@@ -16,7 +16,7 @@
     (ngSubmit)="onSubmit(searchForm)"
   >
     <input
-      class="form-control mb-3"
+      class="form-control mb-1"
       #fromInput
       type="text"
       name="from"
@@ -24,8 +24,11 @@
       [placeholder]="'search.from' | translate"
       required
     />
+    <div class="error" *ngIf="searchForm.submitted && searchForm.controls['from']?.errors">
+      {{ searchForm.controls['from']?.errors?.['required'] ? 'Champ obligatoire' : 'Lieu invalide' }}
+    </div>
     <input
-      class="form-control mb-3"
+      class="form-control mb-1"
       #toInput
       type="text"
       name="to"
@@ -33,16 +36,23 @@
       [placeholder]="'search.to' | translate"
       required
     />
+    <div class="error" *ngIf="searchForm.submitted && searchForm.controls['to']?.errors">
+      {{ searchForm.controls['to']?.errors?.['required'] ? 'Champ obligatoire' : 'Lieu invalide' }}
+    </div>
 
     <div class="row g-2 mb-3">
       <div class="col">
         <input
-          class="form-control"
+          class="form-control mb-1"
           type="date"
           name="travelDate"
           ngModel
           required
+          #travelDateInput
         />
+        <div class="error" *ngIf="searchForm.submitted && searchForm.controls['travelDate']?.errors">
+          {{ searchForm.controls['travelDate']?.errors?.['required'] ? 'Champ obligatoire' : 'La date doit être dans le futur.' }}
+        </div>
       </div>
       <div class="col-auto">
         <select class="form-select" name="passengers" ngModel>
@@ -64,14 +74,21 @@
         />
         <label class="form-check-label" for="roundTrip">{{ 'search.roundTrip' | translate }}</label>
       </div>
-      <input
-        *ngIf="roundTrip"
-        class="form-control"
-        type="date"
-        name="returnDate"
-        ngModel
-        [required]="roundTrip"
-      />
+      <div class="flex-grow-1">
+        <input
+          *ngIf="roundTrip"
+          class="form-control mb-1"
+          type="date"
+          name="returnDate"
+          ngModel
+          [required]="roundTrip"
+          #returnDateInput
+        />
+        <div class="error" *ngIf="roundTrip && searchForm.submitted && searchForm.controls['returnDate']?.errors">
+          <ng-container *ngIf="searchForm.controls['returnDate']?.errors?.['required']; else returnDateErr">Sélectionnez une date de retour.</ng-container>
+          <ng-template #returnDateErr>Retour après le départ.</ng-template>
+        </div>
+      </div>
     </div>
 
     <div class="error" *ngIf="error">{{ error }}</div>

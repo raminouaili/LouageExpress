@@ -13,7 +13,7 @@
   <section class="auth-card">
     <h3>{{ 'login.title' | translate }}</h3>
     <form
-      (ngSubmit)="onSubmit()"
+      (ngSubmit)="onSubmit(loginForm)"
       #loginForm="ngForm"
       class="d-flex flex-column gap-3 w-100"
     >
@@ -33,6 +33,7 @@
         [placeholder]="'login.password' | translate"
         required
       />
+      <div class="error" *ngIf="error">{{ error }}</div>
       <button type="submit" class="btn btn-danger w-100">{{ 'login.submit' | translate }}</button>
     </form>
   </section>
