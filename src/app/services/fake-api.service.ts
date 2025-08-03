@@ -5,11 +5,13 @@ import { Observable, of, throwError, delay, map } from 'rxjs';
 /* Typages                                                             */
 /* ------------------------------------------------------------------ */
 export interface Trip {
-  id: string;
-  time: string;          // ex. "08 h 30"
-  price: number;         // ex. 18
-  route: string;         // ex. "Tunis → Sfax"
-  seats: string;         // ex. "6/8 seats"
+  id: number;
+  time: string;
+  price: number;
+  route: string;
+  seats: string;
+  duration: number; // minutes
+  rating: number;
 }
 
 export interface SearchParams {
@@ -50,6 +52,7 @@ export class FakeApiService {
     if (!params.fromPlaceId || !params.toPlaceId) {
       return throwError(() => new Error('Invalid place ids'));
     }
+
 
     const trips: Trip[] = Array.from({ length: 8 }, (_, i) => {
       const hour = 8 + i;   // 08 h, 09 h, …
