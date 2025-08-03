@@ -1,0 +1,45 @@
+<div class="trip-detail-screen">
+  <header class="hero">
+    <img
+      class="hero-img"
+      src="https://placehold.co/800x450/ff0000/ffffff?text=🚐"
+      alt="Louage"
+    />
+    <div class="hero-overlay">
+      <img
+        class="driver-avatar"
+        src="https://placehold.co/40"
+        alt="chauffeur"
+      />
+      <div class="driver-text">
+        <div class="driver-name">M. Ben Ali</div>
+        <div class="driver-rating">★ {{ trip.rating }}</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="info-card">
+    <div class="times">
+      <span>Départ {{ departure }}</span>
+      <span>•</span>
+      <span>Arrivée {{ arrival }}</span>
+      <span>•</span>
+      <span>Durée {{ durationDisplay }}</span>
+    </div>
+    <div class="seats">
+      <span class="badge">{{ seatsLeft }}/8</span>
+      <div class="capacity-bar">
+        <div class="capacity-fill" [style.width.%]="capacityPercent"></div>
+      </div>
+    </div>
+    <div class="timeline">
+      <span>Tunis</span>
+      <span class="arrow">►</span>
+      <span>Kairouan</span>
+      <span class="arrow">►</span>
+      <span>Sfax</span>
+    </div>
+  </div>
+
+  <button class="reserve-btn">Réserver</button>
+</div>
