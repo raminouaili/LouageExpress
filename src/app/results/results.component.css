@@ -1,9 +1,5 @@
 /* Layout --------------------------------------------------------*/
 .results-screen {
-  min-height: 100vh;
-  background: var(--louage-grey);
-  display: flex;
-  flex-direction: column;
   padding-bottom: 5rem; /* space for filter sheet */
 }
 

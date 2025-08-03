@@ -1,9 +1,5 @@
 /* Layout ---------------------------------------------------------*/
 .search-screen {
-  min-height: 100vh;
-  background: var(--louage-grey);
-  display: flex;
-  flex-direction: column;
   align-items: center;
   padding: 1.25rem 0.75rem 5rem; /* bottom pad for FAB */
 }

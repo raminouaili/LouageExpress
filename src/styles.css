@@ -33,3 +33,32 @@ small {
   background-color: #b71c1c !important;
   border-color: #b71c1c !important;
 }
+
+.container {
+  min-height: 100vh;
+  padding: 16px;
+  background: var(--louage-grey);
+  display: flex;
+  flex-direction: column;
+}
+
+.app-btn {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--louage-red);
+  background: var(--louage-white);
+  color: var(--louage-red);
+  border-radius: var(--louage-radius);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.app-btn:hover {
+  background: var(--louage-red);
+  color: var(--louage-white);
+}
+
+.container > .app-btn:last-child {
+  margin-top: auto;
+  margin-bottom: 24px;
+}
