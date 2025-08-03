@@ -42,3 +42,7 @@ testem.log
 Thumbs.db
 /.vs
 /backend/LouageExpress.Api/obj
+/backend/LouageExpress.Api/.vs/LouageExpress.Api
+/backend/.vs/LouageExpress.Api
+/backend/LouageExpress.Api/bin/Release/net8.0
+*.user
