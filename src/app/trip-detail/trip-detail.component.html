@@ -20,11 +20,11 @@
 
   <div class="info-card">
     <div class="times">
-      <span>Départ {{ departure }}</span>
+      <span>{{ 'trip.departure' | translate:{time: departure} }}</span>
       <span>•</span>
-      <span>Arrivée {{ arrival }}</span>
+      <span>{{ 'trip.arrival' | translate:{time: arrival} }}</span>
       <span>•</span>
-      <span>Durée {{ durationDisplay }}</span>
+      <span>{{ 'trip.duration' | translate:{time: durationDisplay} }}</span>
     </div>
     <div class="seats">
       <span class="badge">{{ seatsLeft }}/8</span>
@@ -41,5 +41,5 @@
     </div>
   </div>
 
-  <button class="app-btn">Réserver</button>
+  <button class="app-btn">{{ 'trip.book' | translate }}</button>
 </div>

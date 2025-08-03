@@ -7,6 +7,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TripService } from '../services/trip.service';
 import { Loader } from '@googlemaps/js-api-loader';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 declare global {
   interface Window { google: typeof google | undefined; }
@@ -15,7 +16,7 @@ declare global {
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -43,7 +44,7 @@ export class SearchComponent implements AfterViewInit {
   private directionsService!: google.maps.DirectionsService;
   private directionsRenderer!: google.maps.DirectionsRenderer;
 
-  constructor(private router: Router, private trips: TripService) {}
+  constructor(private router: Router, private trips: TripService, private translate: TranslateService) {}
 
   /* ----------------------------------------------------------------
      1. Initialiser la carte et l’auto-complétion
@@ -61,7 +62,7 @@ ngAfterViewInit(): void {
         this.initMap();
         this.initAutocomplete();
       })
-      .catch(() => this.error = 'Échec de chargement de Google Maps');
+      .catch(() => this.error = this.translate.instant('search.errors.mapLoad'));
   }
   /* -------------------- Helpers ----------------------------------*/
   private initMap(): void {
@@ -128,7 +129,7 @@ ngAfterViewInit(): void {
           /* Ajuste le viewport sur tout le parcours */
           this.map.fitBounds(res.routes[0].bounds!);
         })
-        .catch(() => this.error = 'Impossible de tracer l’itinéraire');
+        .catch(() => this.error = this.translate.instant('search.errors.route'));
     } else {
       /* Si on change un point et que l’autre est vide, on efface la ligne */
       this.directionsRenderer.set('directions', null);
@@ -201,7 +202,7 @@ ngAfterViewInit(): void {
           queryParams: { from, to, travelDate, returnDate: roundTrip ? returnDate : undefined, passengers }
         });
       },
-      error: () => this.error = 'Une erreur est survenue, réessayez.'
+      error: () => this.error = this.translate.instant('search.errors.generic')
     });
   }
 }

@@ -3,7 +3,7 @@
     <button
       class="btn btn-link link-danger p-0 me-2"
       routerLink="/auth"
-      aria-label="Retour"
+      [attr.aria-label]="'common.back' | translate"
     >
       ←
     </button>
@@ -11,7 +11,7 @@
   </header>
 
   <section class="auth-card">
-    <h3>Log In</h3>
+    <h3>{{ 'login.title' | translate }}</h3>
     <form
       (ngSubmit)="onSubmit(loginForm)"
       #loginForm="ngForm"
@@ -22,7 +22,7 @@
         type="email"
         name="email"
         [(ngModel)]="email"
-        placeholder="Email"
+        [placeholder]="'login.email' | translate"
         required
       />
       <input
@@ -30,11 +30,11 @@
         type="password"
         name="password"
         [(ngModel)]="password"
-        placeholder="Password"
+        [placeholder]="'login.password' | translate"
         required
       />
       <div class="error" *ngIf="error">{{ error }}</div>
-      <button type="submit" class="btn btn-danger w-100">Log In</button>
+      <button type="submit" class="btn btn-danger w-100">{{ 'login.submit' | translate }}</button>
     </form>
   </section>
 </div>
