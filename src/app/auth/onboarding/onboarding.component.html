@@ -19,7 +19,7 @@
     <ng-container *ngFor="let s of slides">
       <swiper-slide>
         <article class="slide-card">
-          <h3 [innerHTML]="s.title.replace('\n','<br>')"></h3>
+          <h3 [innerHTML]="(s.titleKey | translate).replace('\\n','<br>')"></h3>
           <img class="svg-wrapper" src=".\..\..\assets\slides\{{s.imageName}}" alt="Slide Image" style="width:100%;height:auto;max-height:100%;object-fit:contain;">
         </article>
       </swiper-slide>
@@ -28,12 +28,12 @@
 
   <!-- auth actions --------------------------------------------->
   <section class="auth-card auth-bottom">
-    <h3>Get started</h3>
+    <h3>{{ 'onboarding.getStarted' | translate }}</h3>
     <div class="auth-btns">
-      <button routerLink="/signup" class="app-btn">Sign Up</button>
-      <button routerLink="/login" class="app-btn">Log In</button>
+      <button routerLink="/signup" class="app-btn">{{ 'onboarding.signUp' | translate }}</button>
+      <button routerLink="/login" class="app-btn">{{ 'onboarding.logIn' | translate }}</button>
     </div>
-    <div class="divider"><span>or</span></div>
+    <div class="divider"><span>{{ 'onboarding.or' | translate }}</span></div>
     <div class="d-flex gap-3">
       <button class="btn btn-outline-secondary rounded-circle" aria-label="Continue with Google">
         <fa-icon [icon]="faGoogle"></fa-icon>

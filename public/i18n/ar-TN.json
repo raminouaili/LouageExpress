@@ -1,0 +1,111 @@
+{
+  "onboarding": {
+    "getStarted": "ابدأ",
+    "signUp": "إنشاء حساب",
+    "logIn": "تسجيل الدخول",
+    "or": "أو",
+    "slide1": "السلامتك قبل كل شي",
+    "slide2": "احجز تذكرتك وانتي في دارك",
+    "slide3": "تبع الفوايج متاعك دقيقة بدقيقة"
+  },
+  "login": {
+    "title": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة السر",
+    "submit": "تسجيل الدخول"
+  },
+  "signup": {
+    "title": "إنشاء حساب",
+    "selectRole": "اختار النوع",
+    "passenger": "مسافر",
+    "driver": "سواق",
+    "fullName": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة السر",
+    "next": "التالي",
+    "phoneNumber": "رقم الهاتف",
+    "verificationCode": "كود التأكيد",
+    "back": "رجوع",
+    "idNumber": "رقم بطاقة التعريف أو الباسبور",
+    "driverLicense": "رقم رخصة السياقة",
+    "finish": "إنهاء"
+  },
+  "search": {
+    "title": "بحث",
+    "from": "من",
+    "to": "إلى",
+    "passenger": "مسافر",
+    "passengers": "مسافرين",
+    "roundTrip": "ذهاب وعودة",
+    "submit": "بحث",
+    "errors": {
+      "mapLoad": "فشل تحميل خرائط غوغل",
+      "locations": "الأماكن لازم تكون في تونس.",
+      "futureDate": "التاريخ لازم يكون في المستقبل.",
+      "selectReturn": "إختر تاريخ الرجوع.",
+      "returnAfter": "الرجوع لازم يكون بعد تاريخ الذهاب.",
+      "route": "تعذر رسم المسار",
+      "generic": "صار خطأ، عاود المحاولة."
+    }
+  },
+  "results": {
+    "title": "النتائج",
+    "sort": "ترتيب",
+    "sortOptions": {
+      "cheapest": "أرخص",
+      "fastest": "أسرع",
+      "rating": "أفضل تقييم"
+    },
+    "options": "خيارات",
+    "return": "الرجوع يوم {{date}}",
+    "filter": {
+      "dates": "التواريخ القريبة",
+      "price": "≤ 20 د",
+      "button": "تصفية"
+    }
+  },
+  "support": {
+    "searchPlaceholder": "ابحث في الأسئلة المتكررة",
+    "faq": {
+      "q1": "كيفاش نحجز رحلة؟",
+      "a1": "تنجم تبحث وتحجز عبر التطبيق.",
+      "q2": "نجم نلغي الحجز؟",
+      "a2": "إي، من التاريخ متاعك."
+    },
+    "ratingTitle": "قيم آخر رحلة عملتها",
+    "commentPlaceholder": "خلي تعليق…",
+    "send": "إرسال"
+  },
+  "profile": {
+    "paymentMethods": "طرق الدفع",
+    "payment": {
+      "wallet": "محفظة (Flouci)",
+      "card": "بطاقة بنكية",
+      "cash": "دفع نقدي"
+    },
+    "history": "تاريخ الرحلات",
+    "notifications": "إعدادات الإشعارات",
+    "notificationsOpts": {
+      "push": "دفع",
+      "email": "بريد",
+      "sms": "SMS"
+    },
+    "darkMode": "الوضع الداكن",
+    "language": "اللغة",
+    "languageOpts": {
+      "fr": "فرنسي",
+      "en": "إنجليزي",
+      "ar": "عربي تونسي"
+    },
+    "logout": "تسجيل الخروج"
+  },
+  "trip": {
+    "departure": "الانطلاق {{time}}",
+    "arrival": "الوصول {{time}}",
+    "duration": "المدة {{time}}",
+    "book": "احجز"
+  },
+  "common": {
+    "back": "رجوع"
+  }
+}

@@ -2,11 +2,12 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Trip } from '../services/trip.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-trip-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './trip-detail.component.html',
   styleUrls: ['./trip-detail.component.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

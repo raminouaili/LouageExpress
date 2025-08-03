@@ -1,5 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TripService, Trip } from '../services/trip.service';
 import { Subscription } from 'rxjs';
@@ -7,7 +8,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-results',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

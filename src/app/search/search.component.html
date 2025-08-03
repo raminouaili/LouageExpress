@@ -3,11 +3,11 @@
     <button
       class="btn btn-link link-dark p-0 me-2"
       routerLink="/auth"
-      aria-label="Retour"
+      [attr.aria-label]="'common.back' | translate"
     >
       ←
     </button>
-    <h1 class="m-0">Rechercher</h1>
+    <h1 class="m-0">{{ 'search.title' | translate }}</h1>
   </header>
 
   <form
@@ -21,7 +21,7 @@
       type="text"
       name="from"
       ngModel
-      placeholder="De"
+      [placeholder]="'search.from' | translate"
       required
     />
     <input
@@ -30,7 +30,7 @@
       type="text"
       name="to"
       ngModel
-      placeholder="À"
+      [placeholder]="'search.to' | translate"
       required
     />
 
@@ -47,7 +47,7 @@
       <div class="col-auto">
         <select class="form-select" name="passengers" ngModel>
           <option *ngFor="let n of [1,2,3,4,5,6,7,8]" [value]="n">
-            {{ n }} passager{{ n > 1 ? 's' : '' }}
+            {{ n }} {{ n > 1 ? ('search.passengers' | translate) : ('search.passenger' | translate) }}
           </option>
         </select>
       </div>
@@ -62,7 +62,7 @@
           [(ngModel)]="roundTrip"
           id="roundTrip"
         />
-        <label class="form-check-label" for="roundTrip">Aller-retour</label>
+        <label class="form-check-label" for="roundTrip">{{ 'search.roundTrip' | translate }}</label>
       </div>
       <input
         *ngIf="roundTrip"
@@ -80,7 +80,7 @@
       type="submit"
       [disabled]="searchForm.invalid || !fromPlace || !toPlace"
     >
-      Rechercher
+      {{ 'search.submit' | translate }}
     </button>
 
   </form>
