@@ -10,10 +10,11 @@
       ←
     </button>
     <h1 class="m-0">Résultats ({{ results.length }})</h1>
+
+    <button class="btn btn-link link-dark p-0" aria-label="Trier">☰</button>
     <select
       class="sort-select"
       aria-label="Trier"
-      (change)="changeSort($event.target.value)"
     >
       <option value="">Trier</option>
       <option value="cheapest">Moins cher</option>
