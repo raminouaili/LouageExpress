@@ -13,7 +13,7 @@
   <section class="auth-card">
     <h3>Log In</h3>
     <form
-      (ngSubmit)="onSubmit()"
+      (ngSubmit)="onSubmit(loginForm)"
       #loginForm="ngForm"
       class="d-flex flex-column gap-3 w-100"
     >
@@ -33,6 +33,7 @@
         placeholder="Password"
         required
       />
+      <div class="error" *ngIf="error">{{ error }}</div>
       <button type="submit" class="btn btn-danger w-100">Log In</button>
     </form>
   </section>
