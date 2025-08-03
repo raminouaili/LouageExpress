@@ -1,6 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TripService, Trip } from '../services/trip.service';
 import { Subscription } from 'rxjs';
 
@@ -18,9 +18,13 @@ export class ResultsComponent implements OnDestroy {
 
   private sub!: Subscription;
 
+  earliestFilter = false;
+  priceFilter = false;
+
   constructor(
     private route: ActivatedRoute,
-    private trips: TripService
+    private trips: TripService,
+    private router: Router
   ) {
     /* Listen to query-string changes ---------------------------------- */
     this.sub = this.route.queryParamMap.subscribe(params => {
@@ -47,6 +51,18 @@ export class ResultsComponent implements OnDestroy {
         })
         .subscribe(trips => (this.results = trips));
     });
+  }
+
+  openTrip(trip: Trip) {
+    this.router.navigate(['/trip', trip.id], { state: { trip } });
+  }
+
+  toggleEarliestFilter() {
+    this.earliestFilter = !this.earliestFilter;
+  }
+
+  togglePriceFilter() {
+    this.priceFilter = !this.priceFilter;
   }
 
   /* Cleanup to avoid memory leak -------------------------------------- */
