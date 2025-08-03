@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './signup.component.html',
-  styleUrls: ['../auth-shared.css', './signup.component.css'],
+  styleUrls: ['../auth-shared.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SignupComponent {

@@ -37,33 +37,6 @@
   position: relative; /* so FAB can anchor */
 }
 
-/* Inputs ---------------------------------------------------------*/
-.input-group input,
-.inline-row input,
-.inline-row select {
-  width: 100%;
-  font: inherit;
-  padding: 0.8rem 0.9rem;
-  border: 1px solid var(--louage-border);
-  border-radius: 0.75rem;
-  background: #fafafa;
-  outline: none;
-}
-.input-group input:focus,
-.inline-row input:focus,
-.inline-row select:focus {
-  border-color: var(--louage-red);
-}
-
-/* Date + passenger side-by-side ----------------------------------*/
-.inline-row {
-  display: flex;
-  gap: 0.75rem;
-}
-.inline-row select {
-  flex: 1 0 40%;
-}
-
 /* Map preview ----------------------------------------------------*/
 .map-preview {
   width: 100%;
