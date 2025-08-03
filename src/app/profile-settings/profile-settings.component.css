@@ -1,9 +1,5 @@
 /* PAGE ----------------------------------------------------------*/
-.container-profile-settings {
-  width: 100%;
-  height: 100vh;             
-  display: flex;
-  flex-direction: column;
+.profile-settings {
   align-items: center;
   font-family: system-ui, sans-serif;
 }
@@ -105,20 +101,3 @@
 .switch input:checked + span        { background: var(--louage-red); }
 .switch input:checked + span::before{ transform: translateX(20px); }
 
-/* Log-out button ----------------------------------------------- */
-.logout-btn {
-  width: calc(100% - 24px);
-  max-width: 480px;
-  margin-top: auto;      /* pousse le bouton en bas */
-  margin-bottom: 24px;   /* petit espace bas */
-  margin-left: 12px; 
-  margin-right: 12px; 
-  padding: 12px;
-  border: 1px solid var(--louage-red);
-  color: var(--louage-red);
-  background: var(--louage-white);
-  border-radius: var(--louage-radius);
-  font-size: 15px;
-  cursor: pointer;
-}
-.logout-btn:hover { background: var(--louage-red); color: #fff; }

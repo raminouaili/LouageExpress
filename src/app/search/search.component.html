@@ -1,4 +1,4 @@
-<div class="search-screen">
+<div class="container search-screen">
   <header class="search-header">
     <button
       class="btn btn-link link-dark p-0 me-2"
@@ -76,7 +76,7 @@
 
     <div class="error" *ngIf="error">{{ error }}</div>
     <button
-      class="btn btn-danger"
+      class="app-btn"
       type="submit"
       [disabled]="searchForm.invalid || !fromPlace || !toPlace"
     >
