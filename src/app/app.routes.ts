@@ -4,6 +4,7 @@ import { LoginComponent } from './auth/login/LoginComponent';
 import { SearchComponent } from './search/SearchComponent';
 import { ResultsComponent } from './results/ResultsComponent';
 import { SignupComponent } from './auth/signup/SignupComponent';
+import { TripDetailComponent } from './trip-detail/TripDetailComponent';
 import { ProfileSettingsComponent } from './profile-settings/ProfileSettingsComponent';
 import { SupportFeedbackComponent } from './support-feedback/SupportFeedbackComponent';
 
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'search', component: SearchComponent },
   { path: 'results', component: ResultsComponent },
+  { path: 'trip/:id', component: TripDetailComponent },
   { path: 'profile', component: ProfileSettingsComponent },
   { path: 'support', component: SupportFeedbackComponent },
   { path: '', redirectTo: '/auth', pathMatch: 'full' }

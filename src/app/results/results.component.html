@@ -10,6 +10,7 @@
       ←
     </button>
     <h1 class="m-0">Résultats ({{ results.length }})</h1>
+
     <button class="btn btn-link link-dark p-0" aria-label="Trier">☰</button>
     <select
       class="sort-select"
@@ -28,7 +29,7 @@
 
   <!-- List ------------------------------------------------------->
   <section class="results-list">
-    <article class="trip-card" *ngFor="let r of results">
+    <article class="trip-card" *ngFor="let r of results" (click)="openTrip(r)">
       <img
         class="trip-avatar"
         src="https://placehold.co/60x40/ff0000/ffffff?text=🚐"
@@ -37,7 +38,10 @@
       <div class="trip-info">
         <div class="trip-top">
           <span class="trip-time">{{ r.time }}</span>
-          <span class="trip-price">{{ r.price }} DT</span>
+          <div class="trip-right">
+            <span class="trip-price">{{ r.price }} DT</span>
+            <button class="trip-more" aria-label="Options">⋮</button>
+          </div>
         </div>
         <div class="trip-route">{{ r.route }}</div>
         <div class="trip-bar">
@@ -50,8 +54,12 @@
 
   <!-- Bottom filter sheet --------------------------------------->
   <footer class="filter-sheet">
-    <div class="chip">Earliest first</div>
-    <div class="chip">≤ 20 DT</div>
+    <div class="chip" [class.active]="earliestFilter" (click)="toggleEarliestFilter()">
+      Dates proches
+    </div>
+    <div class="chip" [class.active]="priceFilter" (click)="togglePriceFilter()">
+      ≤ 20 DT
+    </div>
     <button class="filter-btn" aria-label="Filtrer">⛃</button>
   </footer>
 </div>
