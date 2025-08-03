@@ -11,6 +11,15 @@
     </button>
     <h1 class="m-0">Résultats ({{ results.length }})</h1>
     <button class="btn btn-link link-dark p-0" aria-label="Trier">☰</button>
+    <select
+      class="sort-select"
+      aria-label="Trier"
+    >
+      <option value="">Trier</option>
+      <option value="cheapest">Moins cher</option>
+      <option value="fastest">Plus rapide</option>
+      <option value="rating">Meilleur rating</option>
+    </select>
   </header>
 
   <div class="return-info" *ngIf="returnDate">
