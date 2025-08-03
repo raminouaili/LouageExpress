@@ -1,0 +1,111 @@
+{
+  "onboarding": {
+    "getStarted": "Commencer",
+    "signUp": "S'inscrire",
+    "logIn": "Se connecter",
+    "or": "ou",
+    "slide1": "Ta sécurité avant tout",
+    "slide2": "Réserve ton trajet depuis chez toi",
+    "slide3": "Suis tes voyages minute par minute"
+  },
+  "login": {
+    "title": "Connexion",
+    "email": "Email",
+    "password": "Mot de passe",
+    "submit": "Se connecter"
+  },
+  "signup": {
+    "title": "Inscription",
+    "selectRole": "Sélectionner un rôle",
+    "passenger": "Passager",
+    "driver": "Chauffeur",
+    "fullName": "Nom complet",
+    "email": "Email",
+    "password": "Mot de passe",
+    "next": "Suivant",
+    "phoneNumber": "Numéro de téléphone",
+    "verificationCode": "Code de vérification",
+    "back": "Retour",
+    "idNumber": "Numéro de carte ou passeport",
+    "driverLicense": "Numéro de permis",
+    "finish": "Terminer"
+  },
+  "search": {
+    "title": "Rechercher",
+    "from": "De",
+    "to": "À",
+    "passenger": "passager",
+    "passengers": "passagers",
+    "roundTrip": "Aller-retour",
+    "submit": "Rechercher",
+    "errors": {
+      "mapLoad": "Échec de chargement de Google Maps",
+      "locations": "Les lieux doivent être situés en Tunisie.",
+      "futureDate": "La date doit être dans le futur.",
+      "selectReturn": "Sélectionnez une date de retour.",
+      "returnAfter": "Retour après le départ.",
+      "route": "Impossible de tracer l’itinéraire",
+      "generic": "Une erreur est survenue, réessayez."
+    }
+  },
+  "results": {
+    "title": "Résultats",
+    "sort": "Trier",
+    "sortOptions": {
+      "cheapest": "Moins cher",
+      "fastest": "Plus rapide",
+      "rating": "Meilleur rating"
+    },
+    "options": "Options",
+    "return": "Retour le {{date}}",
+    "filter": {
+      "dates": "Dates proches",
+      "price": "≤ 20 DT",
+      "button": "Filtrer"
+    }
+  },
+  "support": {
+    "searchPlaceholder": "Rechercher FAQ",
+    "faq": {
+      "q1": "Comment réserver un trajet ?",
+      "a1": "Vous pouvez rechercher et réserver via l'application.",
+      "q2": "Puis-je annuler une réservation ?",
+      "a2": "Oui, dans votre historique."
+    },
+    "ratingTitle": "Évaluez votre dernier trajet",
+    "commentPlaceholder": "Laissez un commentaire…",
+    "send": "Envoyer"
+  },
+  "profile": {
+    "paymentMethods": "Moyens de paiement",
+    "payment": {
+      "wallet": "Wallet (Flouci)",
+      "card": "Carte bancaire",
+      "cash": "Paiement cash"
+    },
+    "history": "Historique trajets",
+    "notifications": "Préférences notifications",
+    "notificationsOpts": {
+      "push": "Push",
+      "email": "Email",
+      "sms": "SMS"
+    },
+    "darkMode": "Mode sombre",
+    "language": "Langue",
+    "languageOpts": {
+      "fr": "Français",
+      "en": "English",
+      "ar": "العربية التونسية"
+    },
+    "logout": "Déconnexion"
+  },
+  "trip": {
+    "departure": "Départ {{time}}",
+    "arrival": "Arrivée {{time}}",
+    "duration": "Durée {{time}}",
+    "book": "Réserver"
+  },
+  "common": {
+    "back": "Retour"
+  }
+}

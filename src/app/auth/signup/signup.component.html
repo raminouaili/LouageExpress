@@ -3,7 +3,7 @@
     <button
       class="btn btn-link link-danger p-0 me-2"
       routerLink="/auth"
-      aria-label="Retour"
+      [attr.aria-label]="'common.back' | translate"
     >
       ←
     </button>
@@ -11,7 +11,7 @@
   </header>
 
   <section class="auth-card">
-    <h3>Sign Up</h3>
+    <h3>{{ 'signup.title' | translate }}</h3>
 
     <form
       *ngIf="step === 1"
@@ -25,16 +25,16 @@
         [(ngModel)]="userType"
         required
       >
-        <option value="" disabled>Select role</option>
-        <option value="passenger">Passager</option>
-        <option value="driver">Chauffeur</option>
+        <option value="" disabled>{{ 'signup.selectRole' | translate }}</option>
+        <option value="passenger">{{ 'signup.passenger' | translate }}</option>
+        <option value="driver">{{ 'signup.driver' | translate }}</option>
       </select>
       <input
         class="form-control"
         type="text"
         name="name"
         [(ngModel)]="general.name"
-        placeholder="Full Name"
+        [placeholder]="'signup.fullName' | translate"
         required
       />
       <input
@@ -42,7 +42,7 @@
         type="email"
         name="email"
         [(ngModel)]="general.email"
-        placeholder="Email"
+        [placeholder]="'signup.email' | translate"
         required
       />
       <input
@@ -50,10 +50,10 @@
         type="password"
         name="password"
         [(ngModel)]="general.password"
-        placeholder="Password"
+        [placeholder]="'signup.password' | translate"
         required
       />
-      <button type="submit" class="btn btn-danger w-100">Next</button>
+      <button type="submit" class="btn btn-danger w-100">{{ 'signup.next' | translate }}</button>
     </form>
 
     <form
@@ -67,7 +67,7 @@
         type="tel"
         name="phone"
         [(ngModel)]="phone"
-        placeholder="Phone Number"
+        [placeholder]="'signup.phoneNumber' | translate"
         required
       />
       <input
@@ -75,7 +75,7 @@
         type="text"
         name="code"
         [(ngModel)]="verificationCode"
-        placeholder="Verification Code"
+        [placeholder]="'signup.verificationCode' | translate"
         required
       />
       <div class="d-flex gap-3">
@@ -84,9 +84,9 @@
           class="btn btn-outline-danger flex-fill"
           (click)="prevStep()"
         >
-          Back
+          {{ 'signup.back' | translate }}
         </button>
-        <button type="submit" class="btn btn-danger flex-fill">Next</button>
+        <button type="submit" class="btn btn-danger flex-fill">{{ 'signup.next' | translate }}</button>
       </div>
     </form>
 
@@ -101,7 +101,7 @@
         type="text"
         name="id"
         [(ngModel)]="idNumber"
-        placeholder="ID or Passport Number"
+        [placeholder]="'signup.idNumber' | translate"
         required
       />
       <div class="d-flex gap-3">
@@ -110,10 +110,10 @@
           class="btn btn-outline-danger flex-fill"
           (click)="prevStep()"
         >
-          Back
+          {{ 'signup.back' | translate }}
         </button>
         <button type="submit" class="btn btn-danger flex-fill">
-          {{ userType === 'driver' ? 'Next' : 'Finish' }}
+          {{ userType === 'driver' ? ('signup.next' | translate) : ('signup.finish' | translate) }}
         </button>
       </div>
     </form>
@@ -129,7 +129,7 @@
         type="text"
         name="license"
         [(ngModel)]="licenseNumber"
-        placeholder="Driver License Number"
+        [placeholder]="'signup.driverLicense' | translate"
         required
       />
       <div class="d-flex gap-3">
@@ -138,9 +138,9 @@
           class="btn btn-outline-danger flex-fill"
           (click)="prevStep()"
         >
-          Back
+          {{ 'signup.back' | translate }}
         </button>
-        <button type="submit" class="btn btn-danger flex-fill">Finish</button>
+        <button type="submit" class="btn btn-danger flex-fill">{{ 'signup.finish' | translate }}</button>
       </div>
     </form>
   </section>

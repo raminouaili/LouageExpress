@@ -1,0 +1,111 @@
+{
+  "onboarding": {
+    "getStarted": "Get started",
+    "signUp": "Sign Up",
+    "logIn": "Log In",
+    "or": "or",
+    "slide1": "Safety first",
+    "slide2": "Book your ride from home",
+    "slide3": "Track your louage in real time"
+  },
+  "login": {
+    "title": "Log In",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Log In"
+  },
+  "signup": {
+    "title": "Sign Up",
+    "selectRole": "Select role",
+    "passenger": "Passenger",
+    "driver": "Driver",
+    "fullName": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "next": "Next",
+    "phoneNumber": "Phone Number",
+    "verificationCode": "Verification Code",
+    "back": "Back",
+    "idNumber": "ID or Passport Number",
+    "driverLicense": "Driver License Number",
+    "finish": "Finish"
+  },
+  "search": {
+    "title": "Search",
+    "from": "From",
+    "to": "To",
+    "passenger": "passenger",
+    "passengers": "passengers",
+    "roundTrip": "Round trip",
+    "submit": "Search",
+    "errors": {
+      "mapLoad": "Failed to load Google Maps",
+      "locations": "Locations must be in Tunisia.",
+      "futureDate": "Date must be in the future.",
+      "selectReturn": "Select a return date.",
+      "returnAfter": "Return after departure.",
+      "route": "Unable to draw route.",
+      "generic": "An error occurred, please try again."
+    }
+  },
+  "results": {
+    "title": "Results",
+    "sort": "Sort",
+    "sortOptions": {
+      "cheapest": "Cheapest",
+      "fastest": "Fastest",
+      "rating": "Best rating"
+    },
+    "options": "Options",
+    "return": "Return on {{date}}",
+    "filter": {
+      "dates": "Earliest dates",
+      "price": "≤ 20 DT",
+      "button": "Filter"
+    }
+  },
+  "support": {
+    "searchPlaceholder": "Search FAQ",
+    "faq": {
+      "q1": "How to book a trip?",
+      "a1": "You can search and book via the app.",
+      "q2": "Can I cancel a booking?",
+      "a2": "Yes, in your history."
+       },
+    "ratingTitle": "Rate your last trip",
+    "commentPlaceholder": "Leave a comment…",
+    "send": "Send"
+  },
+  "profile": {
+    "paymentMethods": "Payment methods",
+    "payment": {
+      "wallet": "Wallet (Flouci)",
+      "card": "Credit card",
+      "cash": "Cash payment"
+    },
+    "history": "Trip history",
+    "notifications": "Notification preferences",
+    "notificationsOpts": {
+      "push": "Push",
+      "email": "Email",
+      "sms": "SMS"
+    },
+    "darkMode": "Dark mode",
+    "language": "Language",
+    "languageOpts": {
+      "fr": "Français",
+      "en": "English",
+      "ar": "العربية التونسية"
+    },
+    "logout": "Log out"
+  },
+  "trip": {
+    "departure": "Departure {{time}}",
+    "arrival": "Arrival {{time}}",
+    "duration": "Duration {{time}}",
+    "book": "Book"
+  },
+  "common": {
+    "back": "Back"
+  }
+}

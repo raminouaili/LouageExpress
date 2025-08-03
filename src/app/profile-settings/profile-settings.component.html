@@ -2,7 +2,7 @@
   <!-- HEADER / TOP 25% ------------------------------------------>
   <div class="header">
     <!-- Flèche retour -->
-    <button class="back-btn" (click)="router.navigate(['../'])" aria-label="Retour">
+    <button class="back-btn" (click)="router.navigate(['../'])" [attr.aria-label]="'common.back' | translate">
       ‹
     </button>
 
@@ -19,34 +19,34 @@
 
     <!-- MOYENS DE PAIEMENT -->
     <div class="section-item clickable" (click)="paymentOpen = !paymentOpen">
-      <span>Moyens de paiement</span>
+      <span>{{ 'profile.paymentMethods' | translate }}</span>
       <span class="chevron">{{ paymentOpen ? '⌄' : '›' }}</span>
     </div>
     <div class="sub-list" *ngIf="paymentOpen">
-      <label><input type="radio" name="payMethod" value="wallet" [(ngModel)]="paymentMethod"> Wallet (Flouci)</label>
-      <label><input type="radio" name="payMethod" value="card"   [(ngModel)]="paymentMethod"> Carte bancaire</label>
-      <label><input type="radio" name="payMethod" value="cash"   [(ngModel)]="paymentMethod"> Paiement cash</label>
+      <label><input type="radio" name="payMethod" value="wallet" [(ngModel)]="paymentMethod"> {{ 'profile.payment.wallet' | translate }}</label>
+      <label><input type="radio" name="payMethod" value="card"   [(ngModel)]="paymentMethod"> {{ 'profile.payment.card' | translate }}</label>
+      <label><input type="radio" name="payMethod" value="cash"   [(ngModel)]="paymentMethod"> {{ 'profile.payment.cash' | translate }}</label>
     </div>
 
     <!-- HISTORIQUE TRAJETS (lien) -->
     <a class="section-item link" routerLink="/history">
-      <span>Historique trajets</span>
+      <span>{{ 'profile.history' | translate }}</span>
       <span class="chevron">›</span>
     </a>
 
     <!-- PRÉFÉRENCES NOTIFICATIONS -->
     <div class="section-item">
-      <span>Préférences notifications</span>
+      <span>{{ 'profile.notifications' | translate }}</span>
       <div class="toggles">
-        <label><input type="checkbox" [(ngModel)]="notifyPush"> Push</label>
-        <label><input type="checkbox" [(ngModel)]="notifyEmail"> Email</label>
-        <label><input type="checkbox" [(ngModel)]="notifySms"> SMS</label>
+        <label><input type="checkbox" [(ngModel)]="notifyPush"> {{ 'profile.notificationsOpts.push' | translate }}</label>
+        <label><input type="checkbox" [(ngModel)]="notifyEmail"> {{ 'profile.notificationsOpts.email' | translate }}</label>
+        <label><input type="checkbox" [(ngModel)]="notifySms"> {{ 'profile.notificationsOpts.sms' | translate }}</label>
       </div>
     </div>
 
     <!-- MODE SOMBRE -->
     <div class="section-item">
-      <span>Mode sombre</span>
+      <span>{{ 'profile.darkMode' | translate }}</span>
       <label class="switch">
         <input type="checkbox" [(ngModel)]="darkMode">
         <span></span>
@@ -55,15 +55,16 @@
 
     <!-- LANGUE -->
     <div class="section-item clickable" (click)="langOpen = !langOpen">
-      <span>Langue</span>
+      <span>{{ 'profile.language' | translate }}</span>
       <span class="chevron">{{ langOpen ? '⌄' : '›' }}</span>
     </div>
     <div class="sub-list" *ngIf="langOpen">
-      <label><input type="radio" name="lang" value="fr" [(ngModel)]="language"> Français</label>
-      <label><input type="radio" name="lang" value="ar" [(ngModel)]="language"> العربية</label>
+      <label><input type="radio" name="lang" value="fr" [(ngModel)]="language" (change)="onLanguageChange()"> {{ 'profile.languageOpts.fr' | translate }}</label>
+      <label><input type="radio" name="lang" value="en" [(ngModel)]="language" (change)="onLanguageChange()"> {{ 'profile.languageOpts.en' | translate }}</label>
+      <label><input type="radio" name="lang" value="ar-TN" [(ngModel)]="language" (change)="onLanguageChange()"> {{ 'profile.languageOpts.ar' | translate }}</label>
     </div>
   </div>
 
   <!-- LOG-OUT -->
-  <button class="app-btn" routerLink="/">Déconnexion</button>
+  <button class="app-btn" routerLink="/">{{ 'profile.logout' | translate }}</button>
 </div>
