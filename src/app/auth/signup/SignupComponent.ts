@@ -2,11 +2,12 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, TranslateModule],
   templateUrl: './signup.component.html',
   styleUrls: ['../auth-shared.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

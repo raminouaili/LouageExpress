@@ -9,22 +9,22 @@
     >
       ←
     </button>
-    <h1 class="m-0">Résultats ({{ results.length }})</h1>
+    <h1 class="m-0">{{ 'results.title' | translate }} ({{ results.length }})</h1>
 
-    <button class="btn btn-link link-dark p-0" aria-label="Trier">☰</button>
+    <button class="btn btn-link link-dark p-0" aria-label="{{ 'results.sort' | translate }}">☰</button>
     <select
       class="sort-select"
-      aria-label="Trier"
+      aria-label="{{ 'results.sort' | translate }}"
     >
-      <option value="">Trier</option>
-      <option value="cheapest">Moins cher</option>
-      <option value="fastest">Plus rapide</option>
-      <option value="rating">Meilleur rating</option>
+      <option value="">{{ 'results.sort' | translate }}</option>
+      <option value="cheapest">{{ 'results.sortOptions.cheapest' | translate }}</option>
+      <option value="fastest">{{ 'results.sortOptions.fastest' | translate }}</option>
+      <option value="rating">{{ 'results.sortOptions.rating' | translate }}</option>
     </select>
   </header>
 
   <div class="return-info" *ngIf="returnDate">
-    Retour le {{ returnDate }}
+    {{ 'results.return' | translate:{date: returnDate} }}
   </div>
 
   <!-- List ------------------------------------------------------->
@@ -40,7 +40,7 @@
           <span class="trip-time">{{ r.time }}</span>
           <div class="trip-right">
             <span class="trip-price">{{ r.price }} DT</span>
-            <button class="trip-more" aria-label="Options">⋮</button>
+            <button class="trip-more" [attr.aria-label]="'results.options' | translate">⋮</button>
           </div>
         </div>
         <div class="trip-route">{{ r.route }}</div>
@@ -55,11 +55,11 @@
   <!-- Bottom filter sheet --------------------------------------->
   <footer class="filter-sheet">
     <div class="chip" [class.active]="earliestFilter" (click)="toggleEarliestFilter()">
-      Dates proches
+      {{ 'results.filter.dates' | translate }}
     </div>
     <div class="chip" [class.active]="priceFilter" (click)="togglePriceFilter()">
-      ≤ 20 DT
+      {{ 'results.filter.price' | translate }}
     </div>
-    <button class="filter-btn" aria-label="Filtrer">⛃</button>
+    <button class="filter-btn" aria-label="{{ 'results.filter.button' | translate }}">⛃</button>
   </footer>
 </div>
