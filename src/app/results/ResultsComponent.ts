@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FakeApiService, Trip } from '../services/fake-api.service';
+import { ActivatedRoute } from '@angular/router';
+import { TripService, Trip } from '../services/trip.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,24 +14,19 @@ import { Subscription } from 'rxjs';
 })
 export class ResultsComponent implements OnDestroy {
   results: Trip[] = [];
-  allResults: Trip[] = [];
   returnDate: string | null = null;
-  sortType: string = '';
-  priceFilter = false;
-  earliestFilter = false;
 
   private sub!: Subscription;
 
   constructor(
     private route: ActivatedRoute,
-    private api: FakeApiService,
-    private router: Router
+    private trips: TripService
   ) {
     /* Listen to query-string changes ---------------------------------- */
     this.sub = this.route.queryParamMap.subscribe(params => {
       /* NOTE
          SearchComponent envoie `from` et `to` qui contiennent les place_id
-         (ou, à défaut, le nom de la ville).  FakeApiService attend
+         (ou, à défaut, le nom de la ville).  TripService attend
          fromPlaceId / toPlaceId : on les mappe simplement.
       */
       const fromPlaceId = params.get('from') ?? '';
@@ -42,7 +37,7 @@ export class ResultsComponent implements OnDestroy {
 
       this.returnDate = returnDate;
 
-      this.api
+      this.trips
         .searchTrips({
           fromPlaceId,
           toPlaceId,
@@ -50,56 +45,11 @@ export class ResultsComponent implements OnDestroy {
           returnDate: returnDate || undefined,
           passengers
         })
-        .subscribe((res) => {
-          this.allResults = res;
-          this.applyFilters();
-        });
+        .subscribe(trips => (this.results = trips));
     });
   }
 
-  changeSort(type: string) {
-    this.sortType = type;
-    this.applyFilters();
-  }
-
-  togglePriceFilter() {
-    this.priceFilter = !this.priceFilter;
-    this.applyFilters();
-  }
-
-  toggleEarliestFilter() {
-    this.earliestFilter = !this.earliestFilter;
-    this.applyFilters();
-  }
-
-  private parseTime(t: string): number {
-    const parts = t.split(' ');
-    const [hour, min] = parts[0].split('h').map((p) => p.trim());
-    return Number(hour) * 60 + Number(min);
-  }
-
-  private applyFilters() {
-    let data = [...this.allResults];
-    if (this.priceFilter) {
-      data = data.filter((d) => d.price <= 20);
-    }
-    if (this.earliestFilter) {
-      data = data.sort((a, b) => this.parseTime(a.time) - this.parseTime(b.time));
-    }
-    if (this.sortType === 'cheapest') {
-      data = data.sort((a, b) => a.price - b.price);
-    } else if (this.sortType === 'fastest') {
-      data = data.sort((a, b) => a.duration - b.duration);
-    } else if (this.sortType === 'rating') {
-      data = data.sort((a, b) => b.rating - a.rating);
-    }
-    this.results = data;
-  }
-
-  openTrip(trip: Trip) {
-    this.router.navigate(['/trip', trip.id], { state: { trip } });
-  }
-
+  /* Cleanup to avoid memory leak -------------------------------------- */
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }

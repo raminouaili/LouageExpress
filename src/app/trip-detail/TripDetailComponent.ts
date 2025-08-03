@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Trip } from '../services/fake-api.service';
+import { Trip } from '../services/trip.service';
 
 @Component({
   selector: 'app-trip-detail',
