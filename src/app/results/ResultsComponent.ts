@@ -98,6 +98,7 @@ export class ResultsComponent implements OnDestroy {
 
   openTrip(trip: Trip) {
     this.router.navigate(['/trip', trip.id], { state: { trip } });
+  }
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();

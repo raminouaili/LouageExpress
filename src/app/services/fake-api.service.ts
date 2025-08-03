@@ -5,7 +5,7 @@ import { Observable, of, throwError, delay, map } from 'rxjs';
 /* Typages                                                             */
 /* ------------------------------------------------------------------ */
 export interface Trip {
-  id: number;
+  id: string;
   time: string;
   price: number;
   route: string;
@@ -64,6 +64,8 @@ export class FakeApiService {
         price,
         route: `${this.placeName(params.fromPlaceId)} → ${this.placeName(params.toPlaceId)}`,
         seats: `${free}/8 seats`,
+        duration: 120 + Math.floor(Math.random() * 60), // 120-180 minutes
+        rating: 4 + Math.random() * 1.5, // 4.0 - 5.5
       };
     });
 

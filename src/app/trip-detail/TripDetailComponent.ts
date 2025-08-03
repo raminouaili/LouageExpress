@@ -19,7 +19,7 @@ export class TripDetailComponent {
     this.trip = (nav?.extras.state as any)?.trip;
     if (!this.trip) {
       this.trip = {
-        id: 0,
+        id: '0',
         time: '08 h 30',
         price: 18,
         route: 'Tunis → Sfax',
