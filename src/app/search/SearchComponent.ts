@@ -62,6 +62,11 @@ export class SearchComponent implements AfterViewInit {
     );
   }
 
+  onCustomAction(): void {
+    // Logique pour l'action personnalisée
+    console.log('Action personnalisée déclenchée');
+  }
+
   onSubmit(form: NgForm): void {
     const { from, to, travelDate, returnDate, passengers, roundTrip } =
       form.value;

@@ -1,18 +1,13 @@
-<!-- Search screen ------------------------------------------------>
 <div class="search-screen">
-  <!-- App-bar ----------------------------------------------------->
   <header class="search-header">
-    <span class="logo">🚐</span>
     <h1>Rechercher</h1>
   </header>
 
-  <!-- Search form ------------------------------------------------->
   <form
     class="search-card"
     #searchForm="ngForm"
     (ngSubmit)="onSubmit(searchForm)"
   >
-    <!-- From / To ------------------------------------------------->
     <div class="input-group">
       <input
         class="form-control"
@@ -24,7 +19,6 @@
         required
       />
     </div>
-
     <div class="input-group">
       <input
         class="form-control"
@@ -37,7 +31,6 @@
       />
     </div>
 
-    <!-- Date + passengers ------------------------------------------>
     <div class="inline-row">
       <input
         class="form-control"
@@ -47,16 +40,12 @@
         required
       />
       <select class="form-select" name="passengers" ngModel>
-        <option
-          *ngFor="let n of [1,2,3,4,5,6,7,8]"
-          [value]="n"
-        >
+        <option *ngFor="let n of [1,2,3,4,5,6,7,8]" [value]="n">
           {{ n }} passager{{ n > 1 ? 's' : '' }}
         </option>
       </select>
     </div>
 
-    <!-- Round trip toggle + return date ----------------------------->
     <div class="inline-row">
       <label class="form-check-label">
         <input
@@ -77,21 +66,17 @@
     </div>
 
     <div class="error" *ngIf="error">{{ error }}</div>
-
-    <!-- Map preview ----------------------------------------------->
-    <div id="map" class="map-preview"></div>
-
-    <!-- Floating Action Button ------------------------------------>
-    <button
+        <button
       class="fab btn btn-danger"
       type="submit"
       [disabled]="searchForm.invalid"
-      aria-label="Rechercher"
     >
-      <i class="fa-solid fa-magnifying-glass"></i>
+      Rechercher
     </button>
   </form>
-      <google-map height="500px" width="100%">
-      <!-- Optional: Add markers, info windows, etc. -->
-    </google-map>
+    <!-- Map preview ----------------------------------------------->
+
+
+    <div id="map" class="map-preview"></div>
+
 </div>
