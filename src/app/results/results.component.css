@@ -27,6 +27,13 @@
   cursor: pointer;
 }
 
+.return-info {
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
 /* List ----------------------------------------------------------*/
 .results-list {
   display: flex;

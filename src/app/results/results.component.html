@@ -7,6 +7,10 @@
     <button class="nav-btn" aria-label="Trier">☰</button>
   </header>
 
+  <div class="return-info" *ngIf="returnDate">
+    Retour le {{ returnDate }}
+  </div>
+
   <!-- List ------------------------------------------------------->
   <section class="results-list">
     <article class="trip-card" *ngFor="let r of results">

@@ -27,6 +27,7 @@ export class SearchComponent implements AfterViewInit {
   private fromPlace: any;
   private toPlace: any;
   error: string | null = null;
+  roundTrip = false;
 
   constructor(private router: Router, private api: FakeApiService) {}
 
@@ -62,14 +63,27 @@ export class SearchComponent implements AfterViewInit {
   }
 
   onSubmit(form: NgForm): void {
-    const { from, to, travelDate, passengers } = form.value;
+    const { from, to, travelDate, returnDate, passengers, roundTrip } =
+      form.value;
 
     const selected = new Date(travelDate);
+    const back = returnDate ? new Date(returnDate) : null;
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     if (selected < today) {
       this.error = 'La date doit être future.';
       return;
+    }
+
+    if (roundTrip) {
+      if (!back) {
+        this.error = 'Veuillez sélectionner une date de retour.';
+        return;
+      }
+      if (back <= selected) {
+        this.error = 'La date de retour doit être après la date de départ.';
+        return;
+      }
     }
 
     if (!this.isPlaceInTunisia(this.fromPlace) || !this.isPlaceInTunisia(this.toPlace)) {
@@ -79,10 +93,22 @@ export class SearchComponent implements AfterViewInit {
 
     this.error = null;
     this.api
-      .searchTrips({ from, to, travelDate, passengers: Number(passengers) })
+      .searchTrips({
+        from,
+        to,
+        travelDate,
+        returnDate: roundTrip ? returnDate : undefined,
+        passengers: Number(passengers),
+      })
       .subscribe(() => {
         this.router.navigate(['/results'], {
-          queryParams: { from, to, travelDate, passengers },
+          queryParams: {
+            from,
+            to,
+            travelDate,
+            returnDate: roundTrip ? returnDate : undefined,
+            passengers,
+          },
         });
       });
   }
