@@ -8,6 +8,8 @@ export interface Trip {
   price: number;         // ex. 18
   route: string;         // ex. "Tunis → Sfax"
   seats: string;         // ex. "6/8 seats"
+  duration: number;      // duration in minutes
+  rating: number;        // ex. 4.8
 }
 
 export interface SearchParams {
@@ -38,6 +40,8 @@ export class TripService {
         price,
         route: `${this.placeName(params.fromPlaceId)} → ${this.placeName(params.toPlaceId)}`,
         seats: `${free}/8 seats`,
+        duration: 60 + Math.floor(Math.random() * 180),
+        rating: Number((3 + Math.random() * 2).toFixed(1)),
       };
     });
 
