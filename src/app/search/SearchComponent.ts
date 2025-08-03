@@ -1,16 +1,16 @@
 import {
-  Component,
-  CUSTOM_ELEMENTS_SCHEMA,
-  AfterViewInit,
-  ElementRef,
-  ViewChild,
+  Component, CUSTOM_ELEMENTS_SCHEMA,
+  AfterViewInit, ElementRef, ViewChild
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FakeApiService } from '../services/fake-api.service';
+import { Loader } from '@googlemaps/js-api-loader';
 
-declare const google: any;
+declare global {
+  interface Window { google: typeof google | undefined; }
+}
 
 @Component({
   selector: 'app-search',
@@ -18,104 +18,159 @@ declare const google: any;
   imports: [CommonModule, FormsModule],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SearchComponent implements AfterViewInit {
+  /* Template refs ------------------------------------------------*/
   @ViewChild('fromInput', { static: true }) fromInput!: ElementRef<HTMLInputElement>;
-  @ViewChild('toInput', { static: true }) toInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('toInput',   { static: true }) toInput!  : ElementRef<HTMLInputElement>;
 
-  private fromPlace: any;
-  private toPlace: any;
+  /* Autocomplete results ----------------------------------------*/
+  public fromPlace: google.maps.places.PlaceResult | null = null;
+  public toPlace  : google.maps.places.PlaceResult | null = null;
+
+  /* UI state -----------------------------------------------------*/
   error: string | null = null;
   roundTrip = false;
 
+  /* Google Map objects ------------------------------------------*/
+  private map!: google.maps.Map;
+  private fromMarker!: google.maps.Marker;
+  private toMarker!: google.maps.Marker;
+  private path!: google.maps.Polyline;
+  private directionsService!: google.maps.DirectionsService;
+  private directionsRenderer!: google.maps.DirectionsRenderer;
+
   constructor(private router: Router, private api: FakeApiService) {}
 
-  ngAfterViewInit(): void {
-    const mapEl = document.getElementById('map') as HTMLElement;
-    new google.maps.Map(mapEl, {
-      center: { lat: 34.0, lng: 9.0 },
-      zoom: 6,
+  /* ----------------------------------------------------------------
+     1. Initialiser la carte et l’auto-complétion
+  ---------------------------------------------------------------- */
+ngAfterViewInit(): void {
+    /* Charge Google Maps + Places avant d’appeler nos helpers */
+    const loader = new Loader({
+      apiKey   : 'AIzaSyDr0Yl2HkwW7OtBa5fyKtySeMuOMATpafc',
+      version  : 'weekly',
+      libraries: ['places']
     });
 
-    const options = { componentRestrictions: { country: 'tn' } };
-    const fromAuto = new google.maps.places.Autocomplete(
-      this.fromInput.nativeElement,
-      options
+    loader.load()
+      .then(() => {
+        this.initMap();
+        this.initAutocomplete();
+      })
+      .catch(() => this.error = 'Échec de chargement de Google Maps');
+  }
+  /* -------------------- Helpers ----------------------------------*/
+  private initMap(): void {
+    this.map = new google.maps.Map(
+      document.getElementById('map') as HTMLElement,
+      { center: { lat: 34, lng: 9 }, zoom: 6, mapTypeControl: false }
     );
-    const toAuto = new google.maps.places.Autocomplete(
-      this.toInput.nativeElement,
-      options
-    );
+
+    this.fromMarker = new google.maps.Marker({ map: this.map, visible: false });
+    this.toMarker   = new google.maps.Marker({ map: this.map, visible: false });
+
+    /* ➜ service + renderer pour l’itinéraire */
+    this.directionsService  = new google.maps.DirectionsService();
+    this.directionsRenderer = new google.maps.DirectionsRenderer({
+      map: this.map,
+      suppressMarkers: true,       // on garde nos propres marqueurs
+      polylineOptions: { strokeColor: '#EA4335', strokeWeight: 4 }
+    });
+  }
+
+
+   private initAutocomplete(): void {
+    const opts = { componentRestrictions: { country: 'tn' } } as google.maps.places.AutocompleteOptions;
+    const fromAuto = new google.maps.places.Autocomplete(this.fromInput.nativeElement, opts);
+    const toAuto   = new google.maps.places.Autocomplete(this.toInput.nativeElement,   opts);
+
     fromAuto.addListener('place_changed', () => {
       this.fromPlace = fromAuto.getPlace();
+      this.updateMap();
     });
     toAuto.addListener('place_changed', () => {
       this.toPlace = toAuto.getPlace();
+      this.updateMap();
     });
   }
 
-  private isPlaceInTunisia(place: any): boolean {
-    return (
-      place &&
-      place.address_components?.some((c: any) => c.short_name?.toLowerCase() === 'tn')
-    );
+  /** Vérifie que le lieu est vraiment en Tunisie (code pays = TN) */
+  private isPlaceInTunisia(p: google.maps.places.PlaceResult | null): boolean {
+    return !!p?.address_components?.some(c => c.short_name?.toLowerCase() === 'tn');
   }
 
-  onCustomAction(): void {
-    // Logique pour l'action personnalisée
-    console.log('Action personnalisée déclenchée');
+  /** Met à jour marqueurs + ligne & ajuste le viewport */
+  private updateMap(): void {
+    /* Met à jour / affiche les marqueurs -------------------------- */
+    if (this.fromPlace?.geometry?.location) {
+      this.fromMarker.setPosition(this.fromPlace.geometry.location);
+      this.fromMarker.setVisible(true);
+    }
+    if (this.toPlace?.geometry?.location) {
+      this.toMarker.setPosition(this.toPlace.geometry.location);
+      this.toMarker.setVisible(true);
+    }
+
+    /* Si les deux points sont définis, on demande l’itinéraire ---- */
+    if (this.fromPlace?.geometry?.location && this.toPlace?.geometry?.location) {
+      this.directionsService
+        .route({
+          origin:      this.fromPlace.geometry.location,
+          destination: this.toPlace.geometry.location,
+          travelMode:  google.maps.TravelMode.DRIVING
+        })
+        .then(res => {
+          this.directionsRenderer.setDirections(res);
+          /* Ajuste le viewport sur tout le parcours */
+          this.map.fitBounds(res.routes[0].bounds!);
+        })
+        .catch(() => this.error = 'Impossible de tracer l’itinéraire');
+    } else {
+      /* Si on change un point et que l’autre est vide, on efface la ligne */
+      this.directionsRenderer.set('directions', null);
+    }
   }
 
+
+  /* ----------------------------------------------------------------
+     2. Soumission
+  ---------------------------------------------------------------- */
   onSubmit(form: NgForm): void {
-    const { from, to, travelDate, returnDate, passengers, roundTrip } =
-      form.value;
+    const { from, to, travelDate, returnDate, passengers, roundTrip } = form.value;
 
-    const selected = new Date(travelDate);
-    const back = returnDate ? new Date(returnDate) : null;
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    if (selected < today) {
-      this.error = 'La date doit être future.';
-      return;
-    }
-
-    if (roundTrip) {
-      if (!back) {
-        this.error = 'Veuillez sélectionner une date de retour.';
-        return;
-      }
-      if (back <= selected) {
-        this.error = 'La date de retour doit être après la date de départ.';
-        return;
-      }
-    }
-
+    /* ---- Validation manuelle ---- */
     if (!this.isPlaceInTunisia(this.fromPlace) || !this.isPlaceInTunisia(this.toPlace)) {
-      this.error = 'Les lieux doivent être en Tunisie.';
+      this.error = 'Les lieux doivent être situés en Tunisie.';
       return;
     }
+
+    const dep = new Date(travelDate);
+    const ret = returnDate ? new Date(returnDate) : null;
+    const today = new Date(); today.setHours(0,0,0,0);
+
+    if (dep < today)          { this.error = 'La date doit être dans le futur.'; return; }
+    if (roundTrip && !ret)    { this.error = 'Sélectionnez une date de retour.'; return; }
+    if (roundTrip && ret && ret <= dep) { this.error = 'Retour après le départ.'; return; }
 
     this.error = null;
-    this.api
-      .searchTrips({
-        from,
-        to,
-        travelDate,
-        returnDate: roundTrip ? returnDate : undefined,
-        passengers: Number(passengers),
-      })
-      .subscribe(() => {
+
+    /* ---- Appel backend ---- */
+    this.api.searchTrips({
+      fromPlaceId: this.fromPlace!.place_id!,
+      toPlaceId:   this.toPlace!.place_id!,
+      travelDate,
+      returnDate: roundTrip ? returnDate : undefined,
+      passengers: +passengers
+    }).subscribe({
+      next: trips => {
+        /* On passe les critères en query params ; la page /results consultera l’API ou utilisera les trips reçus (à vous de voir) */
         this.router.navigate(['/results'], {
-          queryParams: {
-            from,
-            to,
-            travelDate,
-            returnDate: roundTrip ? returnDate : undefined,
-            passengers,
-          },
+          queryParams: { from, to, travelDate, returnDate: roundTrip ? returnDate : undefined, passengers }
         });
-      });
+      },
+      error: () => this.error = 'Une erreur est survenue, réessayez.'
+    });
   }
 }
-

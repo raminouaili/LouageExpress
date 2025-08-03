@@ -1,0 +1,69 @@
+<div class="container">
+  <!-- HEADER / TOP 25% ------------------------------------------>
+  <div class="header">
+    <!-- Flèche retour -->
+    <button class="back-btn" (click)="router.navigate(['../'])" aria-label="Retour">
+      ‹
+    </button>
+
+    <!-- Avatar centré sur la ligne rouge/blanc -->
+    <div class="avatar"></div>
+
+    <!-- Texte sous l’avatar -->
+    <h2>Imen K.</h2>
+    <small>imen.k@example.com</small>
+  </div>
+
+  <!-- SECTION LIST --------------------------------------------->
+  <div class="section">
+
+    <!-- MOYENS DE PAIEMENT -->
+    <div class="section-item clickable" (click)="paymentOpen = !paymentOpen">
+      <span>Moyens de paiement</span>
+      <span class="chevron">{{ paymentOpen ? '⌄' : '›' }}</span>
+    </div>
+    <div class="sub-list" *ngIf="paymentOpen">
+      <label><input type="radio" name="payMethod" value="wallet" [(ngModel)]="paymentMethod"> Wallet (Flouci)</label>
+      <label><input type="radio" name="payMethod" value="card"   [(ngModel)]="paymentMethod"> Carte bancaire</label>
+      <label><input type="radio" name="payMethod" value="cash"   [(ngModel)]="paymentMethod"> Paiement cash</label>
+    </div>
+
+    <!-- HISTORIQUE TRAJETS (lien) -->
+    <a class="section-item link" routerLink="/history">
+      <span>Historique trajets</span>
+      <span class="chevron">›</span>
+    </a>
+
+    <!-- PRÉFÉRENCES NOTIFICATIONS -->
+    <div class="section-item">
+      <span>Préférences notifications</span>
+      <div class="toggles">
+        <label><input type="checkbox" [(ngModel)]="notifyPush"> Push</label>
+        <label><input type="checkbox" [(ngModel)]="notifyEmail"> Email</label>
+        <label><input type="checkbox" [(ngModel)]="notifySms"> SMS</label>
+      </div>
+    </div>
+
+    <!-- MODE SOMBRE -->
+    <div class="section-item">
+      <span>Mode sombre</span>
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="darkMode">
+        <span></span>
+      </label>
+    </div>
+
+    <!-- LANGUE -->
+    <div class="section-item clickable" (click)="langOpen = !langOpen">
+      <span>Langue</span>
+      <span class="chevron">{{ langOpen ? '⌄' : '›' }}</span>
+    </div>
+    <div class="sub-list" *ngIf="langOpen">
+      <label><input type="radio" name="lang" value="fr" [(ngModel)]="language"> Français</label>
+      <label><input type="radio" name="lang" value="ar" [(ngModel)]="language"> العربية</label>
+    </div>
+  </div>
+
+  <!-- LOG-OUT -->
+  <button class="logout-btn" routerLink="/">Déconnexion</button>
+</div>
