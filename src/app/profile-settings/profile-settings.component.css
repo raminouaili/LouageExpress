@@ -45,8 +45,6 @@
   margin-top: 56px;              /* espace pour avatar */
   width: 100%;
   max-width: 480px;
-  background: var(--louage-white);
-  border-radius: var(--louage-radius);
   overflow: hidden;
 }
 
