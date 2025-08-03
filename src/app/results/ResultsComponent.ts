@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { FakeApiService, Trip } from '../services/fake-api.service';
+import { TripService, Trip } from '../services/trip.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -20,13 +20,13 @@ export class ResultsComponent implements OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private api: FakeApiService
+    private trips: TripService
   ) {
     /* Listen to query-string changes ---------------------------------- */
     this.sub = this.route.queryParamMap.subscribe(params => {
       /* NOTE
          SearchComponent envoie `from` et `to` qui contiennent les place_id
-         (ou, à défaut, le nom de la ville).  FakeApiService attend
+         (ou, à défaut, le nom de la ville).  TripService attend
          fromPlaceId / toPlaceId : on les mappe simplement.
       */
       const fromPlaceId = params.get('from') ?? '';
@@ -37,7 +37,7 @@ export class ResultsComponent implements OnDestroy {
 
       this.returnDate = returnDate;
 
-      this.api
+      this.trips
         .searchTrips({
           fromPlaceId,
           toPlaceId,

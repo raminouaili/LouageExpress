@@ -5,7 +5,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FakeApiService } from '../services/fake-api.service';
+import { TripService } from '../services/trip.service';
 import { Loader } from '@googlemaps/js-api-loader';
 
 declare global {
@@ -41,7 +41,7 @@ export class SearchComponent implements AfterViewInit {
   private directionsService!: google.maps.DirectionsService;
   private directionsRenderer!: google.maps.DirectionsRenderer;
 
-  constructor(private router: Router, private api: FakeApiService) {}
+  constructor(private router: Router, private trips: TripService) {}
 
   /* ----------------------------------------------------------------
      1. Initialiser la carte et l’auto-complétion
@@ -157,7 +157,7 @@ ngAfterViewInit(): void {
     this.error = null;
 
     /* ---- Appel backend ---- */
-    this.api.searchTrips({
+    this.trips.searchTrips({
       fromPlaceId: this.fromPlace!.place_id!,
       toPlaceId:   this.toPlace!.place_id!,
       travelDate,
