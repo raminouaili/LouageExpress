@@ -7,7 +7,7 @@ import { faGoogle, faApple } from '@fortawesome/free-brands-svg-icons';
 
 interface Slide {
   title: string;
-  svg: string;
+  imageName: string;
 }
  @Component({
   selector: 'app-onboarding',
@@ -23,16 +23,16 @@ export class OnboardingComponent {
   faGoogle = faGoogle;
    slides: Slide[] = [
     {
-      title: 'Book your seat\nin seconds',
-      svg: `<svg viewBox="0 0 200 140">…</svg>`
+      title: 'السلامتك قبل كل شي',
+      imageName: `1.png`
     },
     {
-      title: 'Real-time\ntracking & ETA',
-      svg: `<svg viewBox="0 0 200 140">…</svg>`
+      title: 'اعمل الريزرفاسون وانت في دارك',
+      imageName: `2.png`
     },
     {
-      title: 'Safe, verified\ndrivers',
-      svg: `<svg viewBox="0 0 200 140">…</svg>`
+      title: 'تبع الفوايج متاعك دقيقة بدقيقة',
+      imageName: `3.png`
     }
   ];
 }

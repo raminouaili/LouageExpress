@@ -9,36 +9,31 @@
 
   <!-- ✨ interactive Swiper Element -->
   <swiper-container
-  style="width:100%;max-width:500px;height:clamp(220px,45vh,420px);"
+  style="width:100%;max-width:500px;height:clamp(500px,40vh,720px);"
       pagination="true"
       mousewheel="true"
       keyboard="true"
       grab-cursor="true"
       autoplay-delay="4500"
-      autoplay-disable-on-interaction="false"
-      style="width:100%;max-width:500px;
-             height:clamp(260px,45vh,420px);">
+      autoplay-disable-on-interaction="false">
     <ng-container *ngFor="let s of slides">
       <swiper-slide>
         <article class="slide-card">
           <h3 [innerHTML]="s.title.replace('\n','<br>')"></h3>
-          <div class="svg-wrapper" [innerHTML]="s.svg"></div>
+          <img class="svg-wrapper" src=".\..\..\assets\slides\{{s.imageName}}" alt="Slide Image" style="width:100%;height:auto;max-height:100%;object-fit:contain;">
         </article>
       </swiper-slide>
     </ng-container>
   </swiper-container>
 
   <!-- auth actions --------------------------------------------->
-   <section class="auth-card">
+  <section class="auth-card auth-bottom">
     <h3>Get started</h3>
-
-    <div class="d-flex gap-3 w-100">
-      <button routerLink="/signup" class="btn btn-danger flex-fill">Sign Up</button>
-      <button routerLink="/login"  class="btn btn-danger flex-fill">Log In</button>
+    <div class="auth-btns">
+      <button routerLink="/signup" class="btn btn-danger auth-btn">Sign Up</button>
+      <button routerLink="/login" class="btn btn-danger auth-btn">Log In</button>
     </div>
-
     <div class="divider"><span>or</span></div>
-
     <div class="d-flex gap-3">
       <button class="btn btn-outline-secondary rounded-circle" aria-label="Continue with Google">
         <fa-icon [icon]="faGoogle"></fa-icon>
