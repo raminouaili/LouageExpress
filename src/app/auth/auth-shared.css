@@ -101,3 +101,12 @@
   .onboarding { padding: 2rem; }
   .auth-card  { margin-top: 2rem; }
 }
+
+/* Form validation */
+input.ng-invalid.ng-touched {
+  border-color: var(--louage-red);
+}
+.error {
+  color: var(--louage-red);
+  font-size: 0.9rem;
+}
